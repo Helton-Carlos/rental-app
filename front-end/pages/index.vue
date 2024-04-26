@@ -46,4 +46,6 @@ import contract from '../public/image/contract.png'
       />
     </div>
   </div>
+
+  <section-card />
 </template>
