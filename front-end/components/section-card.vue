@@ -1,71 +1,42 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import doc from '../public/image/icon-doc.svg'
-import print from '../public/image/icon-print.svg'
-import signature from '../public/image/icon-signature.svg'
+interface ISection {
+  icons: string,
+  title: string,
+  context: string
+}
+const { info } = defineProps<{
+  info: ISection[]
+}>();
 
-const name = ref<string>('teste')
 </script>
 
 <template>
-  <section class="w-3/4 bg-gray mx-auto my-12 px-5 py-5">
-    <h3 class="text-white text-1xl font-bold">
-      Como funciona?
+  <section class="bg-gray mx-auto my-12 px-5 py-5 md:w-3/4">
+    <h3 class="text-white text-xl my-1 font-bold">
+      O que fazemos?
     </h3>
 
-    <div class="flex mt-2">
-      <div>
-        <div class="flex gap-1">
-          <img 
-            class="bg-black p-1 rounded-sm"
-            :src="doc" 
-            :alt="name" 
-          />
-          <p class="text-white font-medium text-xl capitalize">
-            {{ name }}
+    <div class="block mt-2 md:flex">
+      <div 
+        class="flex gap-2 mx-auto mt-2"
+        v-for="(card, index) in info" 
+        :key="index"
+      >
+        <img 
+          class="bg-black w-[40px] h-[40px] p-1 rounded-sm"
+          :src="card.icons" 
+          :alt="card.title" 
+        />
+
+        <div class="pr-4">
+          <p class="text-white font-medium text-xl capitalize mb">
+            {{ card.title }}
           </p>
-        </div>
 
-        <span class="text-white">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Assumenda iure excepturi, deserunt consequuntur sed enim.
-        </span>
-      </div>
-
-      <div>
-        <div class="flex gap-1">
-          <img 
-            class="bg-black p-1 rounded-sm"
-            :src="print" 
-            :alt="name" 
-          />
-          <p class="text-white font-medium text-xl capitalize">
-            {{ name }}
-          </p>
-        </div>
-
-        <span class="text-white">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Assumenda iure excepturi, deserunt consequuntur sed enim.
-        </span>
-      </div>
-
-      <div>
-        <div class="flex gap-1">
-          <img 
-            class="bg-black p-1 rounded-sm"
-            :src="signature" 
-            :alt="name" 
-          />
-          <p class="text-white font-medium text-xl capitalize">
-            {{ name }}
-          </p>
-        </div>
-
-        <span class="text-white">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Assumenda iure excepturi, deserunt consequuntur sed enim.
-        </span>
+          <span class="text-white">
+            {{ card.context }}
+          </span>
+        </div> 
       </div>
     </div>
   </section>
