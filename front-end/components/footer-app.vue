@@ -1,9 +1,11 @@
 <template>
   <header class="bg-black px-5 pt-2">
     <div class="w-[900px] mx-auto flex justify-between py-2">
-      <h1 class="text-purple text-2xl font-bold">
-        RetalDoc
-      </h1>
+      <nuxt-link to="/">
+        <h1 class="text-purple text-2xl font-bold cursor-pointer">
+          RetalDoc
+        </h1>
+      </nuxt-link>
 
       <nav>
         <ul class="text-white">
