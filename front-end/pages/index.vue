@@ -25,7 +25,7 @@ const section = [
 
 <template>
   <div>  
-    <div class="max-w-[900px] mt-8 flex justify-between items-center mx-auto">
+    <div class="mt-8 flex justify-between items-center mx-auto">
       <div class="w-[470px] mt-8 px-4 py-2 mx-auto text-center md:text-left">
         <h2 class="text-3xl font-bold my-2">
           Contrato de Locação Residencial e Comercial

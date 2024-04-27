@@ -5,7 +5,7 @@ import girlHouse from 'public/image/girl-house.svg';
 </script>
 
 <template>
-  <section class="mx-auto my-5 px-5 py-5 md:w-3/4 md:my-12">
+  <section class="mx-auto my-5 px-5 py-5 md:my-12">
     <div class="flex items-center">
       <div>
         <img 
