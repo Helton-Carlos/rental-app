@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import contract from '../public/image/contract.png';
-import doc from '../public/image/icon-doc.svg'
-import print from '../public/image/icon-print.svg'
-import signature from '../public/image/icon-signature.svg'
+import doc from '../public/image/icon-doc.svg';
+import print from '../public/image/icon-print.svg';
+import signature from '../public/image/icon-signature.svg';
+
+const router = useRouter();
 
 const section = [
   {  
@@ -20,14 +23,22 @@ const section = [
     title: "Imprima e assine",
     context: "Você também pode optar por assinar digitalmente."
   },
-]
+];
+
+const picked = ref<string>('')
+
+function init() {
+  if(picked.value) {
+    router.push({ name: picked.value })
+  }
+}
 </script>
 
 <template>
   <div>  
     <div class="mt-8 flex justify-between items-center mx-auto">
-      <div class="w-[470px] mt-8 px-4 py-2 mx-auto text-center md:text-left">
-        <h2 class="text-3xl font-bold my-2">
+      <div class="w-[470px] mt-2 px-4 py-2 mx-auto text-center md:text-left md:mt-8">
+        <h2 class="text-2xl font-bold md:my-2 md:text-3xl">
           Contrato de Locação Residencial e Comercial
           Selecione o modelo:
         </h2>
@@ -37,27 +48,51 @@ const section = [
             Selecione o modelo:
           </span>
 
-          <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
-            <input 
-              class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
-              type="radio" 
-              name="residencial" 
-              id="residencial"
-            > 
-            <span class="pl-1 font-semibold">Locação Residencial</span>
-          </div>
+          <form 
+            @submit.prevent="init" 
+            class="flex flex-col gap-2"
+          >
+            <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
+              <input 
+                class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
+                type="radio" 
+                name="residential" 
+                id="residential "
+                value="residential "
+                v-model="picked"
+              > 
+              <label 
+                for="residential " 
+                class="pl-1 font-semibold"
+              >
+                Locação Residencial
+              </label>
+            </div>
 
-          <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
-            <input 
-              class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
-              type="radio" 
-              name="comercio" 
-              id="comercio"
-            > 
-            <span class="pl-1 font-semibold">Locação  Comercial</span>
-          </div>
+            <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
+              <input 
+                class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
+                type="radio" 
+                name="business" 
+                id="business"
+                value="business"
+                v-model="picked"
+              > 
+              <label 
+                for="business" 
+                class="pl-1 font-semibold"
+              >
+                Locação  Comercial
+              </label>
+            </div>
 
-          <button class="btn-primary mt-3">Avançar</button>
+            <button 
+              class="btn-primary mt-3"
+              type="submit"
+            >
+              Avançar
+            </button>
+          </form>
         </div>
       </div>
 
@@ -69,12 +104,10 @@ const section = [
         />
       </div>
     </div>
-
-    <div>
-      <section-card
-        :info="section"
-      />
-    </div>
+ 
+    <section-card
+      :info="section"
+    />
 
     <information />
   </div>
