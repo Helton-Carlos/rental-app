@@ -11,7 +11,7 @@ const { info } = defineProps<{
 </script>
 
 <template>
-  <section class="bg-gray mx-auto my-12 px-5 py-5 md:w-3/4">
+  <section class="bg-gray mx-auto my-5 px-5 py-5 md:w-3/4 md:my-12">
     <h3 class="text-white text-xl my-1 font-bold">
       O que fazemos?
     </h3>
