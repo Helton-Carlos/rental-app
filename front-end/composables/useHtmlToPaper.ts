@@ -13,13 +13,13 @@ export const useHtmlToPaper = (options = {}) => {
     timeout: 1000,
     autoClose: true,
     windowTitle: document?.title,
-};
-
+  };
 
   const finalOptions = { ...defaultOptions, ...options };
 
   const print = (el: { innerHTML: any; }) => {
     const { name, specs, styles, timeout, autoClose, windowTitle } = finalOptions;
+
     const printWindow = window.open('', name, specs.join(','));
 
     printWindow?.document.write(`
@@ -28,12 +28,11 @@ export const useHtmlToPaper = (options = {}) => {
           <title>${windowTitle}</title>
           ${styles.map(url => `<link rel="stylesheet" href="${url}">`).join('')}
         </head>
-        <body>
+        <body style="padding: 35px">
           ${el.innerHTML}
         </body>
       </html>
     `);
-
     printWindow?.document.close();
 
     setTimeout(() => {
