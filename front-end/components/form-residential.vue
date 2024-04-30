@@ -4,6 +4,7 @@ import { form } from '../useful/info';
 import { useStorage } from '@vueuse/core';
 
 const page = ref<number>(0);
+
 const MODEL_OWNERS_1 = ref<(string | number)[]>([]);
 const MODEL_OWNERS_2 = ref<(string | number)[]>([]);
 
@@ -23,19 +24,28 @@ function submit(data: (string | number)[]) {
   if( page.value === 2) MODEL_TENANT_1.value = data;
   if( page.value === 3) MODEL_TENANT_2.value = data;
 
+  more()
+}
+
+function more() {
   page.value++
 }
 
 function back() {
-  page.value--
+  if(page.value > 0) {
+    page.value--
+  };
+}
+function clear() {
+  page.value = 0
 }
 
 const info = computed(()=>{
-  return page.value >=1 ? form[page.value] : form[page.value];
+  return page.value > 1 ? form[page.value] : form[page.value];
 })
 
 const title = computed(()=>{
-  return page.value >=1 ? 
+  return page.value > 1 ? 
     "Quais são as informações do inquilino(a)?" : 
     "Quais são as informações do proprietário(a)?";
 })
@@ -44,13 +54,13 @@ const title = computed(()=>{
 
 <template>
   <div class="flex justify-between">
-
     <Form
       :title="title"
       :page="page"
       :info="info"
-      @back="back"
       @submit="submit"
+      @back="back"
+      @return="clear"
     />
   
     <Page />
