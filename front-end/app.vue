@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderApp /> 
-      <div class="w-[1200px] mx-auto">
+      <div class="sm:w-[1200px] mx-auto">
         <NuxtPage />
       </div>
     <FooterApp />

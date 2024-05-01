@@ -15,7 +15,7 @@ function handlePrint() {
 
 <template>
   <div class="bg-gray p-2 m-5">
-    <div class="w-[750px] h-[750px] bg-white my-2 px-4 py-4 mx-auto overflow-auto">
+    <div class="hidden sm:flex sm:w-[750px] sm:h-[750px] sm:bg-white sm:my-2 sm:px-4 sm:py-4 sm:mx-auto sm:overflow-auto">
       <div ref="contentToPrint">
         <h2 class="text-xl text-center font-bold my-2">CONTRATO DE LOCAÇÃO DE IMOVÉL RESIDENCIAL</h2>
         

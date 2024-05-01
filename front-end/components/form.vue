@@ -29,7 +29,7 @@ function getInfos() {
 </script>
 
 <template>
-  <div class="w-[550px] h-full bg-gray-light my-2 px-4 py-4 text-center md:text-left md:my-8">
+  <div class="w-full h-full mx-auto bg-gray-light my-2 px-4 py-4 text-center sm:w-[550px] sm:text-left sm:my-8">
     <div v-if="page < 4">   
       <h3 class="text-xl font-bold md:my-2 md:text-2xl"> 
         {{ title }}

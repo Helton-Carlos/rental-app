@@ -15,5 +15,5 @@
 
  .btn-gray {
   @apply bg-gray text-white font-medium px-5 py-2 rounded
-              hover:bg-purple-light 
+             hover:bg-purple-light hover:text-gray
  }
