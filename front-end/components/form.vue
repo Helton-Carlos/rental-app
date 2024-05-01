@@ -30,10 +30,7 @@ function getInfos() {
 
 <template>
   <div class="w-[550px] h-full bg-gray-light my-2 px-4 py-4 text-center md:text-left md:my-8">
-    <form 
-      v-if="page < 4"
-      @submit.prevent="getInfos"
-    >   
+    <div v-if="page < 4">   
       <h3 class="text-xl font-bold md:my-2 md:text-2xl"> 
         {{ title }}
       </h3>
@@ -76,12 +73,12 @@ function getInfos() {
 
         <button 
           class="w-full btn-primary mt-3"
-          type="submit"
+          @click.prevent="getInfos"
         >
           Avançar
         </button>
       </div>
-    </form>
+    </div>
 
     <div v-else>
       <h3 class="text-xl text-center font-bold md:my-2 md:text-2xl"> 

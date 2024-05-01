@@ -32,10 +32,9 @@ function more() {
 }
 
 function back() {
-  if(page.value > 0) {
-    page.value--
-  };
+  page.value--
 }
+
 function clear() {
   page.value = 0
 }
