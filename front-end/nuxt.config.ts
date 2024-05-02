@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   modules: [
     '@vueuse/nuxt',
+    '@pinia/nuxt',
   ],
   postcss: {
     plugins: {

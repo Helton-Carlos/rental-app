@@ -1,19 +1,18 @@
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
+import { STORAGE } from '../useful/enuns';
 
 export const useInfoPrint = defineStore('infoPrint', {
   state: () => ({
-    RE_OWNERS_1: 'RE-OWNERS-1',
-    RE_OWNERS_2: 'RE-OWNERS-2',
-    RE_TENANT_1: 'RE-TENANT-1',
-    RE_TENANT_2: 'RE-TENANT-2',
+   
   }),
 
   getters: {
     getStorageInfo() {
-      let owners_1 = localStorage.getItem(this.RE_OWNERS_1);
-      let owners_2 = localStorage.getItem(this.RE_OWNERS_2);
-      let tenant_1 = localStorage.getItem(this.RE_TENANT_1);
-      let tenant_2 = localStorage.getItem(this.RE_TENANT_2);
+      let owners_1 = localStorage.getItem(STORAGE.RE_OWNERS_1);
+      let owners_2 = localStorage.getItem(STORAGE.RE_OWNERS_2);
+      let tenant_1 = localStorage.getItem(STORAGE.RE_TENANT_1);
+      let tenant_2 = localStorage.getItem(STORAGE.RE_TENANT_2);
 
       if(owners_1 && owners_2 && tenant_1 && tenant_2) {
         let owners1 = JSON.parse(owners_1);
@@ -27,6 +26,17 @@ export const useInfoPrint = defineStore('infoPrint', {
   },
 
   actions: {
+    submitStorageUser(page: number, data: (string | number)[]) {
+      console.log(page);
+      console.log(data);
+      
+      if(page === 0) useStorage(STORAGE.RE_OWNERS_1, data);
+      if(page === 1) useStorage(STORAGE.RE_OWNERS_2, data);
+    
+      if(page === 2) useStorage(STORAGE.RE_TENANT_1, data);
+      if(page === 3) useStorage(STORAGE.RE_TENANT_2, data);
+    },
+
     deleteStorageUser(nameLocalStorage: any) {
       let getLocal = localStorage.getItem(nameLocalStorage);
 

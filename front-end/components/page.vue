@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useHtmlToPaper } from '../composables/useHtmlToPaper';
+import { useInfoPrint } from '../store/infoPrint';
+
+const { getStorageInfo } = useInfoPrint();
 
 const { print } = useHtmlToPaper();
 
@@ -18,21 +21,39 @@ function handlePrint() {
     <div class="hidden sm:flex sm:w-[750px] sm:h-[750px] sm:bg-white sm:my-2 sm:px-4 sm:py-4 sm:mx-auto sm:overflow-auto">
       <div ref="contentToPrint">
         <h2 class="text-xl text-center font-bold my-2">CONTRATO DE LOCAÇÃO DE IMOVÉL RESIDENCIAL</h2>
-        
+       
         <p class="text-sm font-bold pb-2"> 
           IDENTIFICAÇÃO DAS PARTES CONTRATANTES
         </p>
 
         <p class="text-sm pb-2">
-          <strong>LOCADOR:</strong> ____________, ____________, ____________, Solteiro(a), Carteira de identidade (RG) nº ____________, 
-          expedida por ____________, C.P.F. nº ____________, residente na ____________, nº ____________, ____________, 
-          ____________/____________, CEP: ____________.
+          <strong>LOCADOR: </strong> 
+          <span class="capitalize" v-if="getStorageInfo?.owners1[1]">{{ getStorageInfo?.owners1[1] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="getStorageInfo?.owners1[2]">{{ getStorageInfo?.owners1[2] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="getStorageInfo?.owners1[4]">{{ getStorageInfo?.owners1[4] }}, </span><span v-else> ____________, </span>  
+          <span v-if="getStorageInfo?.owners1[3]">{{ getStorageInfo?.owners1[0] }}: </span><span> ____________, </span>
+          Estado civil: <span v-if="getStorageInfo?.owners1[3]">{{ getStorageInfo?.owners1[3] }}, </span><span v-else> ____________, </span>
+          residente na <span class="capitalize" v-if="getStorageInfo?.owners2[1]">{{ getStorageInfo?.owners2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="getStorageInfo?.owners2[2]">{{ getStorageInfo?.owners2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="getStorageInfo?.owners2[4]">{{ getStorageInfo?.owners2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="getStorageInfo?.owners2[5]">{{ getStorageInfo?.owners2[5] }}/</span><span v-else> ____________/</span>
+          <span class="capitalize" v-if="getStorageInfo?.owners2[6]">{{ getStorageInfo?.owners2[6] }},</span><span v-else> ____________, </span>
+          CEP:<span class="capitalize" v-if="getStorageInfo?.owners2[0]">{{ getStorageInfo?.owners2[0] }}. </span><span v-else> ____________.</span>
         </p>
 
         <p class="text-sm py-2">
-          <strong>LOCATÁRIO:</strong> ____________, ____________, ____________, Solteiro(a), Carteira de identidade (RG) nº ____________, 
-          expedida por ____________, C.P.F. nº ____________, residente na ____________, nº ____________, ____________, 
-          ____________/____________, CEP: ____________.
+          <strong>LOCATÁRIO: </strong>
+          <span class="capitalize" v-if="getStorageInfo?.tenant1[1]">{{ getStorageInfo?.tenant1[1] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="getStorageInfo?.tenant1[2]">{{ getStorageInfo?.tenant1[2] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="getStorageInfo?.tenant1[4]">{{ getStorageInfo?.tenant1[4] }}, </span><span v-else> ____________, </span>  
+          <span v-if="getStorageInfo?.tenant1[3]">{{ getStorageInfo?.tenant1[0] }}: </span><span> ____________, </span>
+          Estado civil: <span v-if="getStorageInfo?.tenant1[3]">{{ getStorageInfo?.tenant1[3] }}, </span><span v-else> ____________, </span>
+          residente na <span class="capitalize" v-if="getStorageInfo?.tenant2[1]">{{ getStorageInfo?.tenant2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="getStorageInfo?.tenant2[2]">{{ getStorageInfo?.tenant2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="getStorageInfo?.tenant2[4]">{{ getStorageInfo?.tenant2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="getStorageInfo?.tenant2[5]">{{ getStorageInfo?.tenant2[5] }}/</span><span v-else> ____________/</span>
+          <span class="capitalize" v-if="getStorageInfo?.tenant2[6]">{{ getStorageInfo?.tenant2[6] }},</span><span v-else> ____________, </span>
+          CEP:<span class="capitalize" v-if="getStorageInfo?.tenant2[0]">{{ getStorageInfo?.tenant2[0] }}. </span><span v-else> ____________.</span>
         </p>
 
         <p class="text-sm py-2">

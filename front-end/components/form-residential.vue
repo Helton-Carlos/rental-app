@@ -1,28 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 import { form } from '../useful/info';
-import { useStorage } from '@vueuse/core';
+import { useInfoPrint } from '../store/infoPrint';
+
+const { submitStorageUser } = useInfoPrint();
 
 const page = ref<number>(0);
 
-const MODEL_OWNERS_1 = ref<(string | number)[]>([]);
-const MODEL_OWNERS_2 = ref<(string | number)[]>([]);
-
-const MODEL_TENANT_1 = ref<(string | number)[]>([]);
-const MODEL_TENANT_2 = ref<(string | number)[]>([]);
-
-useStorage('RE-OWNERS-1', MODEL_OWNERS_1);
-useStorage('RE-OWNERS-2', MODEL_OWNERS_2);
-
-useStorage('RE-TENANT-1', MODEL_TENANT_1);
-useStorage('RE-TENANT-2', MODEL_TENANT_2);
-
-function submit(data: (string | number)[]) {
-  if( page.value === 0) MODEL_OWNERS_1.value = data;
-  if( page.value === 1) MODEL_OWNERS_2.value = data;
-
-  if( page.value === 2) MODEL_TENANT_1.value = data;
-  if( page.value === 3) MODEL_TENANT_2.value = data;
+function submit(data: (string | number)[]) { 
+  submitStorageUser(page.value, data)
 
   more()
 }
@@ -62,6 +48,6 @@ const title = computed(()=>{
       @return="clear"
     />
   
-    <Page />
+    <Page  />
   </div>
 </template>

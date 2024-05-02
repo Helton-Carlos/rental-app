@@ -1,0 +1,6 @@
+export enum STORAGE {
+    RE_OWNERS_1 = 'RE-OWNERS-1',
+    RE_OWNERS_2 = 'RE-OWNERS-2',
+    RE_TENANT_1 = 'RE-TENANT-1',
+    RE_TENANT_2 = 'RE-TENANT-2',
+}
