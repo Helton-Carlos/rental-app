@@ -1,12 +1,13 @@
 <script setup lang="ts">
 interface IInfo {
   label: string,
-  placeholder: string,
+  placeholder?: string,
   model: number | string,
   select?: boolean,
   option?: string[],
   name?: string,
-  type?: string
+  type?: string,
+  max?: number
 } [];
 
 const emit = defineEmits<{
@@ -16,7 +17,7 @@ const emit = defineEmits<{
 }>();
 
 const prop = defineProps<{
-  title: string,
+  title: string | undefined,
   page: number,
   info: IInfo[];
 }>();
@@ -30,7 +31,7 @@ function getInfos() {
 
 <template>
   <div class="w-full h-full mx-auto bg-gray-light my-2 px-4 py-4 text-center sm:w-[550px] sm:text-left sm:my-8">
-    <div v-if="page < 4">   
+    <div v-if="page < 6">   
       <h3 class="text-xl font-bold md:my-2 md:text-2xl"> 
         {{ title }}
       </h3>
@@ -58,6 +59,7 @@ function getInfos() {
         :name="infos.name" 
         :id="infos.name"
         :placeholder="infos.placeholder"
+        :max="infos.max"
         v-model="infos.model"
       /> 
       </div>

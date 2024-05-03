@@ -26,13 +26,14 @@ function clear() {
 }
 
 const info = computed(()=>{
-  return page.value > 1 ? form[page.value] : form[page.value];
+ return form[page.value]
 })
 
 const title = computed(()=>{
-  return page.value > 1 ? 
-    "Quais são as informações do inquilino(a)?" : 
-    "Quais são as informações do proprietário(a)?";
+   if(page.value < 2) return "Quais são as informações do proprietário(a)?"
+   if(page.value <= 3) return "Quais são as informações do inquilino(a)?" 
+   if(page.value === 4) return "Quais são as informações da propridade?" 
+   if(page.value === 5) return "Quais são as informações do contrato?" 
 })
 
 </script>

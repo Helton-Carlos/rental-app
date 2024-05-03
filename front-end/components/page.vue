@@ -2,8 +2,9 @@
 import { ref } from 'vue';
 import { useHtmlToPaper } from '../composables/useHtmlToPaper';
 import { useInfoPrint } from '../store/infoPrint';
+import { maskCPF } from '../useful/mask'
 
-const { getStorageInfo } = useInfoPrint();
+const { $state } = useInfoPrint();
 
 const { print } = useHtmlToPaper();
 
@@ -28,32 +29,32 @@ function handlePrint() {
 
         <p class="text-sm pb-2">
           <strong>LOCADOR: </strong> 
-          <span class="capitalize" v-if="getStorageInfo?.owners1[1]">{{ getStorageInfo?.owners1[1] }}, </span><span v-else> ____________, </span> 
-          <span class="capitalize" v-if="getStorageInfo?.owners1[2]">{{ getStorageInfo?.owners1[2] }}, </span><span v-else> ____________, </span> 
-          <span class="capitalize" v-if="getStorageInfo?.owners1[4]">{{ getStorageInfo?.owners1[4] }}, </span><span v-else> ____________, </span>  
-          <span v-if="getStorageInfo?.owners1[3]">{{ getStorageInfo?.owners1[0] }}: </span><span> ____________, </span>
-          Estado civil: <span v-if="getStorageInfo?.owners1[3]">{{ getStorageInfo?.owners1[3] }}, </span><span v-else> ____________, </span>
-          residente na <span class="capitalize" v-if="getStorageInfo?.owners2[1]">{{ getStorageInfo?.owners2[1] }}, </span><span v-else> ____________, </span>  
-          nº<span class="capitalize" v-if="getStorageInfo?.owners2[2]">{{ getStorageInfo?.owners2[2] }}, </span><span v-else> ____________, </span>  
-          <span class="capitalize" v-if="getStorageInfo?.owners2[4]">{{ getStorageInfo?.owners2[4] }}, </span><span v-else> ____________, </span>  
-          <span class="capitalize" v-if="getStorageInfo?.owners2[5]">{{ getStorageInfo?.owners2[5] }}/</span><span v-else> ____________/</span>
-          <span class="capitalize" v-if="getStorageInfo?.owners2[6]">{{ getStorageInfo?.owners2[6] }},</span><span v-else> ____________, </span>
-          CEP:<span class="capitalize" v-if="getStorageInfo?.owners2[0]">{{ getStorageInfo?.owners2[0] }}. </span><span v-else> ____________.</span>
+          <span class="capitalize" v-if="$state?.owners1[1]">{{ $state?.owners1[1] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.owners1[2]">{{ $state?.owners1[2] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.owners1[4]">{{ $state?.owners1[4] }}, </span><span v-else> ____________, </span>  
+          <span v-if="$state?.owners1[0]">{{ $state?.owners1[0] }}: </span><span> {{ maskCPF($state?.owners1[5]) }}, </span>
+          Estado civil: <span v-if="$state?.owners1[3]">{{ $state?.owners1[3] }}, </span><span v-else> ____________, </span>
+          residente na <span class="capitalize" v-if="$state?.owners2[1]">{{ $state?.owners2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="$state?.owners2[2]">{{ $state?.owners2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.owners2[4]">{{ $state?.owners2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.owners2[5]">{{ $state?.owners2[5] }}/</span><span v-else> ____________/</span>
+          <span class="uppercase" v-if="$state?.owners2[6]">{{ $state?.owners2[6] }},</span><span v-else> ____________, </span>
+          CEP: <span class="capitalize" v-if="$state?.owners2[0]">{{ $state?.owners2[0] }}. </span><span v-else> ____________.</span>
         </p>
 
         <p class="text-sm py-2">
           <strong>LOCATÁRIO: </strong>
-          <span class="capitalize" v-if="getStorageInfo?.tenant1[1]">{{ getStorageInfo?.tenant1[1] }}, </span><span v-else> ____________, </span> 
-          <span class="capitalize" v-if="getStorageInfo?.tenant1[2]">{{ getStorageInfo?.tenant1[2] }}, </span><span v-else> ____________, </span> 
-          <span class="capitalize" v-if="getStorageInfo?.tenant1[4]">{{ getStorageInfo?.tenant1[4] }}, </span><span v-else> ____________, </span>  
-          <span v-if="getStorageInfo?.tenant1[3]">{{ getStorageInfo?.tenant1[0] }}: </span><span> ____________, </span>
-          Estado civil: <span v-if="getStorageInfo?.tenant1[3]">{{ getStorageInfo?.tenant1[3] }}, </span><span v-else> ____________, </span>
-          residente na <span class="capitalize" v-if="getStorageInfo?.tenant2[1]">{{ getStorageInfo?.tenant2[1] }}, </span><span v-else> ____________, </span>  
-          nº<span class="capitalize" v-if="getStorageInfo?.tenant2[2]">{{ getStorageInfo?.tenant2[2] }}, </span><span v-else> ____________, </span>  
-          <span class="capitalize" v-if="getStorageInfo?.tenant2[4]">{{ getStorageInfo?.tenant2[4] }}, </span><span v-else> ____________, </span>  
-          <span class="capitalize" v-if="getStorageInfo?.tenant2[5]">{{ getStorageInfo?.tenant2[5] }}/</span><span v-else> ____________/</span>
-          <span class="capitalize" v-if="getStorageInfo?.tenant2[6]">{{ getStorageInfo?.tenant2[6] }},</span><span v-else> ____________, </span>
-          CEP:<span class="capitalize" v-if="getStorageInfo?.tenant2[0]">{{ getStorageInfo?.tenant2[0] }}. </span><span v-else> ____________.</span>
+          <span class="capitalize" v-if="$state?.tenant1[1]">{{ $state?.tenant1[1] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.tenant1[2]">{{ $state?.tenant1[2] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.tenant1[4]">{{ $state?.tenant1[4] }}, </span><span v-else> ____________, </span>  
+          <span v-if="$state?.tenant1[0]">{{ $state?.tenant1[0] }}: </span><span> {{ maskCPF($state?.tenant1[5]) }}, </span>
+          Estado civil: <span v-if="$state?.tenant1[3]">{{ $state?.tenant1[3] }}, </span><span v-else> ____________, </span>
+          residente na <span class="capitalize" v-if="$state?.tenant2[1]">{{ $state?.tenant2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="$state?.tenant2[2]">{{ $state?.tenant2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.tenant2[4]">{{ $state?.tenant2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.tenant2[5]">{{ $state?.tenant2[5] }}/</span><span v-else> ____________/</span>
+          <span class="uppercase" v-if="$state?.tenant2[6]">{{ $state?.tenant2[6] }},</span><span v-else> ____________, </span>
+          CEP: <span class="capitalize" v-if="$state?.tenant2[0]">{{ $state?.tenant2[0] }}. </span><span v-else> ____________.</span>
         </p>
 
         <p class="text-sm py-2">
@@ -63,8 +64,13 @@ function handlePrint() {
         <p class="text-sm font-bold py-4">Cláusula 1ª - DO OBJETO DO CONTRATO</p>
         
         <p>
-          O OBJETO deste contrato é o imóvel de propriedade do LOCADOR, situado na ____________, nº ____________, 
-          ____________, ____________/____________, com as características a seguir:____________
+          O OBJETO deste contrato é o imóvel de propriedade do LOCADOR, situado na 
+          <span class="capitalize" v-if="$state?.owners2[1]">{{ $state?.owners2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="$state?.owners2[2]">{{ $state?.owners2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.owners2[4]">{{ $state?.owners2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.owners2[5]">{{ $state?.owners2[5] }}/</span><span v-else> ____________/</span>
+          <span class="uppercase" v-if="$state?.owners2[6]">{{ $state?.owners2[6] }},</span><span v-else> ____________, </span>
+          CEP: <span class="capitalize" v-if="$state?.owners2[0]">{{ $state?.owners2[0] }}. </span><span v-else> ____________.</span>
         </p>
         <p>
           Imóvel isento de encargos ou quaisquer pendências financeiras.
@@ -74,7 +80,10 @@ function handlePrint() {
 
         <p class="text-sm font-bold py-4">Cláusula 2ª - DO PRAZO DE LOCAÇÃO</p> 
 
-        <p>A duração da locação deste imóvel é de ____________ meses, iniciando-se em ____________.</p> 
+        <p>A duração da locação deste imóvel é de
+          <span class="capitalize" v-if="$state?.agreement[0]">{{ $state?.agreement[0] }} meses, </span><span v-else> ____________ meses, </span>
+          iniciando-se em <span class="capitalize" v-if="$state?.agreement[1]">{{ $state?.agreement[1] }} </span><span v-else> ____________.</span>
+        </p> 
 
         <p class="text-sm font-bold py-4">Cláusula 3ª - DA FINALIDADE DO IMÓVEL</p>   
           
@@ -85,7 +94,10 @@ function handlePrint() {
         <p class="text-sm font-bold py-4">Cláusula 4ª - SOBRE O VALOR DO ALUGUEL, DESPESAS E IMPOSTOS</p>  
           
         <p class="pb-2">
-          O LOCATÁRIO se compromete a pagar o aluguel mensal no valor de R$ ____________, que deverá ser realizado até o dia ____________ de cada mês subsequente ao vencido.
+          O LOCATÁRIO se compromete a pagar o aluguel mensal no valor de R$ 
+          <span class="capitalize" v-if="$state?.agreement[0]">{{ $state?.agreement[0] }} </span><span v-else> ____________.</span> 
+          que deverá ser realizado até o dia 
+          <span class="capitalize" v-if="$state?.agreement[3]">{{ $state?.agreement[3] }} </span><span v-else> ____________,</span> de cada mês subsequente ao vencido.
         </p>
         <p>
           § 1º. Este pagamento será efetuado em dinheiro (espécie), diretamente ao LOCADOR ou a terceiros que tenham a devida autorização deste.
@@ -109,7 +121,9 @@ function handlePrint() {
         <p class="text-sm font-bold py-4">Cláusula 5ª – DA GARANTIA</p> 
 
         <p class="pb-2">
-          O LOCATÁRIO, para garantia do fiel cumprimento das obrigações ora pactuadas, depositará na conta do LOCADOR, a título de caução, a quantia de R$ ____________.
+          O LOCATÁRIO, para garantia do fiel cumprimento das obrigações ora pactuadas, depositará na conta do LOCADOR, a título de caução, 
+          a quantia de R$ <span class="capitalize" v-if="$state?.agreement[4]">{{ $state?.agreement[4] }} </span>
+          <span v-else> ____________.</span> 
         </p>
         <p>
           § 1º. Este pagamento será efetuado da mesma forma que a locação, diretamente ao LOCADOR ou a terceiros que tenham a devida autorização deste.
@@ -196,13 +210,19 @@ function handlePrint() {
         <p class="text-sm font-bold py-4">Cláusula 10ª - MULTA POR INFRAÇÃO</p> 
 
         <p>
-          As partes acordam o pagamento da multa no valor de R$ ____________, a ser aplicada à parte que infringir qualquer uma das cláusulas contidas neste contrato, exceto nas hipóteses previstas na Cláusula 11ª.
+          As partes acordam o pagamento da multa no valor de R$ 
+          <span class="capitalize" v-if="$state?.agreement[5]">{{ $state?.agreement[5] }} </span> 
+          <span v-else> ____________, </span> 
+          a ser aplicada à parte que infringir qualquer uma das cláusulas contidas neste contrato, exceto nas hipóteses previstas na Cláusula 11ª.
         </p>  
 
         <p class="text-sm font-bold py-4">Cláusula 11ª - DA RESCISÃO</p>  
 
         <p class="pb-2">
-          Se o LOCATÁRIO decidir rescindir o contrato antecipadamente, ele deverá pagar ao LOCADOR uma multa no valor de R$ ____________. Além disso, o LOCATÁRIO pode ser responsabilizado por eventuais perdas e danos.
+          Se o LOCATÁRIO decidir rescindir o contrato antecipadamente, ele deverá pagar ao LOCADOR uma multa no valor de R$ 
+          <span class="capitalize" v-if="$state?.agreement[6]">{{ $state?.agreement[6] }}.</span> 
+          <span v-else> ____________.</span> 
+          Além disso, o LOCATÁRIO pode ser responsabilizado por eventuais perdas e danos.
         </p>  
         <p>
           § 1º. O LOCATÁRIO está isento do pagamento da multa de rescisão antecipada ou indenização se a entrega do imóvel for devido à transferência, a mando do empregador, seja este privado ou público, para outra localidade distinta daquela onde o contrato foi inicialmente estabelecido, desde que o LOCADOR seja notificado com pelo menos 30 (trinta) dias de antecedência.
