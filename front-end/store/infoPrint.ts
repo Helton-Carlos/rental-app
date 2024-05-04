@@ -24,12 +24,15 @@ export const useInfoPrint = defineStore('infoPrint', {
       if(page === 5) this.agreement = data;
     },
 
-    deleteStorageUser(nameLocalStorage: any) {
-      let getLocal = localStorage.getItem(nameLocalStorage);
+    clearStorage() {
+      this.owners1 = [];
+      this.owners2 =  [];
+    
+      this.tenant1 = [];
+      this.tenant2 = [];
 
-      if(getLocal) {
-        localStorage.removeItem(nameLocalStorage);
-      }
+      this.property = [];
+      this.agreement = [];
     },
   }
 })

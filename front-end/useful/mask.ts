@@ -2,10 +2,6 @@ export function maskCPF(num: number | string) {
   const cpf = typeof num === 'number' ? num.toString() : num;
 
   if(cpf) {
-    if (cpf.length !== 11) {
-      console.log('erro')
-    }
-
     return (
       cpf.substring(0, 3) +
       '.' +
@@ -22,10 +18,6 @@ export function maskPJ(num: number | string) {
   const cnpj = typeof num === 'number' ? num.toString() : num;
 
   if(cnpj) {
-    if (cnpj.length !== 14) {
-      console.log('erro')
-    }
-
     return (
       cnpj.substring(0, 2) +
       '.' +
@@ -38,4 +30,17 @@ export function maskPJ(num: number | string) {
       cnpj.substring(12)
     );
   }
+}
+
+export function maskMoney(value: number | string) {
+  const number = typeof value === 'number' ? value.toString() : value;
+
+  if (!number) return '0,00';
+
+  const [integerPart, decimalPart] = number.split('.');
+
+  const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const formattedDecimalPart = decimalPart ? (decimalPart.length === 1 ? decimalPart + '0' : decimalPart) : '00';
+
+  return `${formattedIntegerPart},${formattedDecimalPart}`;
 }

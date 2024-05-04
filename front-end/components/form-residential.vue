@@ -49,6 +49,6 @@ const title = computed(()=>{
       @return="clear"
     />
   
-    <Page  />
+    <PageResidential  />
   </div>
 </template>
