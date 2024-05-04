@@ -34,9 +34,7 @@ export function maskPJ(num: number | string) {
 
 export function maskMoney(value: number | string) {
   const number = typeof value === 'number' ? value.toString() : value;
-
-  if (!number) return '0,00';
-
+  
   const [integerPart, decimalPart] = number.split('.');
 
   const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
