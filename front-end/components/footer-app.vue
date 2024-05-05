@@ -1,10 +1,12 @@
+<script setup lang="ts">
+import faceDoc from 'public/image/logo.svg';
+</script>
+
 <template>
   <header class="bg-black px-5 pt-2">
-    <div class="w-[900px] mx-auto flex justify-between py-2">
+    <div class="w-full mx-auto flex justify-between py-2 md:w-9/12">
       <nuxt-link to="/">
-        <h1 class="text-purple text-2xl font-bold cursor-pointer">
-          RetalDoc
-        </h1>
+        <img class=" cursor-pointer" :src="faceDoc" alt="logo retalDoc" />
       </nuxt-link>
 
       <nav>

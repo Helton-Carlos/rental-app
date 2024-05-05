@@ -9,7 +9,7 @@ export function maskCPF(num: number | string) {
       '.' +
       cpf.substring(6, 9) +
       '-' +
-      cpf.substring(9)
+      cpf.substring(9, 11) 
     );
   }
 }

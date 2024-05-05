@@ -39,7 +39,7 @@ const title = computed(()=>{
 </script>
 
 <template>
-  <div class="block sm:flex sm:justify-between">
+  <div class="block lg:flex lg:justify-between">
     <Form
       :title="title"
       :page="page"

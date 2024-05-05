@@ -36,8 +36,8 @@ function init() {
 
 <template>
   <div>  
-    <div class="mt-8 flex justify-between items-center mx-auto">
-      <div class="w-[470px] mt-2 px-4 py-2 mx-auto text-center md:text-left md:mt-8">
+    <div class="mt-8 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto">
+      <div class="w-[470px] mt-2 py-2 mx-auto text-center md:text-left md:mt-8">
         <h2 class="text-2xl font-bold md:my-2 md:text-3xl">
           Contrato de Locação Residencial e Comercial
           Selecione o modelo:
@@ -52,7 +52,7 @@ function init() {
             @submit.prevent="init" 
             class="flex flex-col gap-2"
           >
-            <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
+            <div class="bg-gray-light px-2 py-3 flex items-center rounded-lg">
               <input 
                 class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
                 type="radio" 

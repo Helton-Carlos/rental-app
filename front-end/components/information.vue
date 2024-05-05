@@ -5,8 +5,8 @@ import girlHouse from 'public/image/girl-house.svg';
 </script>
 
 <template>
-  <section class="mx-auto my-5 px-5 py-5 md:my-12">
-    <div class="flex items-center">
+  <section class="my-5 px-5 py-5 md:mx-auto md:w-3/4 md:my-12">
+    <div class="flex items-center md:justify-between">
       <div>
         <img 
           class="hidden md:block"
@@ -38,7 +38,7 @@ import girlHouse from 'public/image/girl-house.svg';
       </div>
     </div>
 
-    <div class="flex items-center">
+    <div class="flex items-center md:justify-between">
       <div>
         <h3 class="text-2xl my-1 font-bold">
           Iremos te ajudar!

@@ -19,7 +19,7 @@ function handlePrint() {
 
 <template>
   <div class="bg-gray p-2 m-5">
-    <div class="hidden sm:flex sm:w-[750px] sm:h-[750px] sm:bg-white sm:my-2 sm:px-4 sm:py-4 sm:mx-auto sm:overflow-auto">
+    <div class="hidden md:flex md:w-[750px] md:h-[750px] md:bg-white md:my-2 md:px-4 md:py-4 md:mx-auto md:overflow-auto">
       <div ref="contentToPrint">
         <h2 class="text-xl text-center font-bold my-2">CONTRATO DE LOCAÇÃO DE IMOVÉL RESIDENCIAL</h2>
         
@@ -30,33 +30,37 @@ function handlePrint() {
 
           <p class="text-sm pb-2">
             <strong>LOCADOR: </strong> 
-            <span class="capitalize" v-if="$state?.owners1[1]">{{ $state?.owners1[1] }}, </span><span v-else> ____________, </span> 
-            <span class="capitalize" v-if="$state?.owners1[2]">{{ $state?.owners1[2] }}, </span><span v-else> ____________, </span> 
-            <span class="capitalize" v-if="$state?.owners1[4]">{{ $state?.owners1[4] }}, </span><span v-else> ____________, </span>  
-            <span v-if="$state?.owners1[0]">{{ $state?.owners1[0] }}: </span><span> {{ maskCPF($state?.owners1[5]) }}, </span>
-            Estado civil: <span v-if="$state?.owners1[3]">{{ $state?.owners1[3] }}, </span><span v-else> ____________, </span>
-            residente na <span class="capitalize" v-if="$state?.owners2[1]">{{ $state?.owners2[1] }}, </span><span v-else> ____________, </span>  
-            nº<span class="capitalize" v-if="$state?.owners2[2]">{{ $state?.owners2[2] }}, </span><span v-else> ____________, </span>  
-            <span class="capitalize" v-if="$state?.owners2[4]">{{ $state?.owners2[4] }}, </span><span v-else> ____________, </span>  
-            <span class="capitalize" v-if="$state?.owners2[5]">{{ $state?.owners2[5] }}/</span><span v-else> ____________/</span>
-            <span class="uppercase" v-if="$state?.owners2[6]">{{ $state?.owners2[6] }},</span><span v-else> ____________, </span>
-            CEP: <span class="capitalize" v-if="$state?.owners2[0]">{{ $state?.owners2[0] }}. </span><span v-else> ____________.</span>
-          </p>
+          </p> 
+          
+          <span class="capitalize" v-if="$state?.owners1[1]">{{ $state?.owners1[1] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.owners1[2]">{{ $state?.owners1[2] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.owners1[4]">{{ $state?.owners1[4] }}, </span><span v-else> ____________, </span>  
+          <span v-if="$state?.owners1[5]">{{ $state?.owners1[0] }}, CPF: {{ maskCPF($state?.owners1[5]) }}, </span><span v-else> ____________, </span>
+          Estado civil: <span v-if="$state?.owners1[3]">{{ $state?.owners1[3] }}, </span><span v-else> ____________, </span>
+          residente na <span class="capitalize" v-if="$state?.owners2[1]">{{ $state?.owners2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="$state?.owners2[2]">{{ $state?.owners2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.owners2[4]">{{ $state?.owners2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.owners2[5]">{{ $state?.owners2[5] }}/</span><span v-else> ____________/</span>
+          <span class="uppercase" v-if="$state?.owners2[6]">{{ $state?.owners2[6] }},</span><span v-else> ____________, </span>
+          CEP: <span class="capitalize" v-if="$state?.owners2[0]">{{ $state?.owners2[0] }}. </span><span v-else> ____________.</span>
+      
 
           <p class="text-sm py-2">
             <strong>LOCATÁRIO: </strong>
-            <span class="capitalize" v-if="$state?.tenant1[1]">{{ $state?.tenant1[1] }}, </span><span v-else> ____________, </span> 
-            <span class="capitalize" v-if="$state?.tenant1[2]">{{ $state?.tenant1[2] }}, </span><span v-else> ____________, </span> 
-            <span class="capitalize" v-if="$state?.tenant1[4]">{{ $state?.tenant1[4] }}, </span><span v-else> ____________, </span>  
-            <span v-if="$state?.tenant1[0]">{{ $state?.tenant1[0] }}: </span><span> {{ maskCPF($state?.tenant1[5]) }}, </span>
-            Estado civil: <span v-if="$state?.tenant1[3]">{{ $state?.tenant1[3] }}, </span><span v-else> ____________, </span>
-            residente na <span class="capitalize" v-if="$state?.tenant2[1]">{{ $state?.tenant2[1] }}, </span><span v-else> ____________, </span>  
-            nº<span class="capitalize" v-if="$state?.tenant2[2]">{{ $state?.tenant2[2] }}, </span><span v-else> ____________, </span>  
-            <span class="capitalize" v-if="$state?.tenant2[4]">{{ $state?.tenant2[4] }}, </span><span v-else> ____________, </span>  
-            <span class="capitalize" v-if="$state?.tenant2[5]">{{ $state?.tenant2[5] }}/</span><span v-else> ____________/</span>
-            <span class="uppercase" v-if="$state?.tenant2[6]">{{ $state?.tenant2[6] }},</span><span v-else> ____________, </span>
-            CEP: <span class="capitalize" v-if="$state?.tenant2[0]">{{ $state?.tenant2[0] }}. </span><span v-else> ____________.</span>
           </p>
+
+          <span class="capitalize" v-if="$state?.tenant1[1]">{{ $state?.tenant1[1] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.tenant1[2]">{{ $state?.tenant1[2] }}, </span><span v-else> ____________, </span> 
+          <span class="capitalize" v-if="$state?.tenant1[4]">{{ $state?.tenant1[4] }}, </span><span v-else> ____________, </span>  
+          <span v-if="$state?.tenant1[5]">{{ $state?.tenant1[0] }}, CPF: {{ maskCPF($state?.tenant1[5]) }}, </span><span v-else> ____________, </span>
+          Estado civil: <span v-if="$state?.tenant1[3]">{{ $state?.tenant1[3] }}, </span><span v-else> ____________, </span>
+          residente na <span class="capitalize" v-if="$state?.tenant2[1]">{{ $state?.tenant2[1] }}, </span><span v-else> ____________, </span>  
+          nº<span class="capitalize" v-if="$state?.tenant2[2]">{{ $state?.tenant2[2] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.tenant2[4]">{{ $state?.tenant2[4] }}, </span><span v-else> ____________, </span>  
+          <span class="capitalize" v-if="$state?.tenant2[5]">{{ $state?.tenant2[5] }}/</span><span v-else> ____________/</span>
+          <span class="uppercase" v-if="$state?.tenant2[6]">{{ $state?.tenant2[6] }},</span><span v-else> ____________, </span>
+          CEP: <span class="capitalize" v-if="$state?.tenant2[0]">{{ $state?.tenant2[0] }}. </span><span v-else> ____________.</span>
+        
 
           <p class="text-sm py-2">
             As partes acima nomeadas acordam o presente Contrato de Locação Residencial, de acordo com as cláusulas a seguir:
