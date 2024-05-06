@@ -36,7 +36,7 @@ function init() {
 
 <template>
   <div>  
-    <div class="mt-8 mx-8 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto">
+    <div class="mt-8 mx-2 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto">
       <div class="w-[470px] mt-2 py-2 mx-auto text-center md:text-left md:mt-8">
         <h2 class="text-2xl font-bold md:my-2 md:text-3xl">
           Contrato de Locação Residencial e Comercial
