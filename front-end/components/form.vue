@@ -17,7 +17,7 @@ const emit = defineEmits<{
 }>();
 
 const prop = defineProps<{
-  title: string | undefined,
+  title: string | any,
   page: number,
   info: IInfo[];
 }>();

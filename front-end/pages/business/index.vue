@@ -2,9 +2,7 @@
 </script>
 
 <template>
- <div class="flex gap-2">
-  <FormResidential />
-
-  <Page />
+ <div>
+  <Document />
  </div>
 </template>

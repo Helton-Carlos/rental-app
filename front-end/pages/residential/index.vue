@@ -3,6 +3,6 @@
 
 <template>
  <div>
-  <FormResidential />
+  <Document />
  </div>
 </template>

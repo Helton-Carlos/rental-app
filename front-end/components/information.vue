@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import faceDoc from 'public/image/face-doc.svg';
 import girlHouse from 'public/image/girl-house.svg';
-
 </script>
 
 <template>
-  <section class="my-5 px-5 py-5 md:mx-auto md:w-3/4 md:my-12">
+  <section class="my-5 px-5 py-5 md:mx-auto md:w-4/5 md:my-12">
     <div class="flex items-center md:justify-between">
       <div>
         <img 

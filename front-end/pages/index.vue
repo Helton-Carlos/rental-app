@@ -36,7 +36,7 @@ function init() {
 
 <template>
   <div>  
-    <div class="mt-8 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto">
+    <div class="mt-8 mx-8 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto">
       <div class="w-[470px] mt-2 py-2 mx-auto text-center md:text-left md:mt-8">
         <h2 class="text-2xl font-bold md:my-2 md:text-3xl">
           Contrato de Locação Residencial e Comercial
@@ -57,12 +57,12 @@ function init() {
                 class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
                 type="radio" 
                 name="residential" 
-                id="residential "
-                value="residential "
+                id="residential"
+                value="residential"
                 v-model="picked"
               > 
               <label 
-                for="residential " 
+                for="residential" 
                 class="pl-1 font-semibold"
               >
                 Locação Residencial
@@ -82,7 +82,7 @@ function init() {
                 for="business" 
                 class="pl-1 font-semibold"
               >
-                Locação  Comercial
+                Locação Comercial
               </label>
             </div>
 
