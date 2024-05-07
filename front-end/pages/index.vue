@@ -115,5 +115,7 @@ function init() {
     />
 
     <information />
+
+    <price />
   </div>
 </template>
