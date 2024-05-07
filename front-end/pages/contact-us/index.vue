@@ -3,7 +3,7 @@
 
 <template>
  <div>
-    <h2 class="text-2xl mx-5 font-bold md:my-2 md:text-3xl">
+    <h2 class="text-2xl mt-10 mx-5 font-bold md:my-2 md:text-3xl">
       Fale conosco
     </h2>
 

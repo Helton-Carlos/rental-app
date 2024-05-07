@@ -10,7 +10,7 @@ import faceDoc from 'public/image/logo.svg';
       </nuxt-link>
 
       <nav>
-        <ul class="text-white">
+        <ul class="text-white font-medium">
           <nuxt-link to="/information">
             <li class="cursor-pointer hover:text-purple">- Informação</li>
           </nuxt-link>

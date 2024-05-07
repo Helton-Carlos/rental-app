@@ -4,6 +4,7 @@ import contract from '../public/image/contract.png';
 import doc from '../public/image/icon-doc.svg';
 import print from '../public/image/icon-print.svg';
 import signature from '../public/image/icon-signature.svg';
+import arrowRight from '../public/image/arrow-right.svg'
 
 const router = useRouter();
 
@@ -54,7 +55,7 @@ function init() {
           >
             <div class="bg-gray-light px-2 py-3 flex items-center rounded-lg">
               <input 
-                class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
+                class="w-4 h-4" 
                 type="radio" 
                 name="residential" 
                 id="residential"
@@ -71,7 +72,7 @@ function init() {
 
             <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
               <input 
-                class="w-4 h-4 text-purple bg-purple border-gray focus:ring-purple" 
+                class="w-4 h-4" 
                 type="radio" 
                 name="business" 
                 id="business"
@@ -90,7 +91,11 @@ function init() {
               class="btn-primary mt-3"
               type="submit"
             >
-              Avançar
+              <div class="flex justify-center items-center">
+                <span class="pr-1">Avançar</span>
+              
+                <img :src="arrowRight" alt="seta para avançar" />
+              </div>
             </button>
           </form>
         </div>
