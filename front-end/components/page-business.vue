@@ -243,13 +243,17 @@ function handlePrint() {
           <p class="text-sm font-bold py-5">Cláusula 10ª - MULTA POR INFRAÇÃO</p>  
 
           <p class="pb-2">
-            As partes acordam o pagamento da multa no valor de R$ ____________, a ser aplicada à parte que infringir qualquer uma das cláusulas contidas neste contrato, exceto nas hipóteses previstas na Cláusula 11ª.
+            As partes acordam o pagamento da multa no valor de 
+            <span v-if="$state?.agreement[5]">R$ {{$state?.agreement[5]}},</span>
+            <span v-else>R$ ____________,</span> a ser aplicada à parte que infringir qualquer uma das cláusulas contidas neste contrato, exceto nas hipóteses previstas na Cláusula 11ª.
           </p>
             
           <p class="text-sm font-bold py-5">Cláusula 11ª - DA RESCISÃO</p>  
         
           <p class="pb-2">
-            Se o LOCATÁRIO decidir rescindir o contrato antecipadamente, ele deverá pagar ao LOCADOR uma multa no valor de R$ ____________. Além disso, o LOCATÁRIO pode ser responsabilizado por eventuais perdas e danos.
+            Se o LOCATÁRIO decidir rescindir o contrato antecipadamente, ele deverá pagar ao LOCADOR uma multa no valor de 
+            <span v-if="$state?.agreement[6]">R$ {{$state?.agreement[6]}},</span>
+            <span v-else>R$ ____________,</span> Além disso, o LOCATÁRIO pode ser responsabilizado por eventuais perdas e danos.
           </p> 
 
           <p class="pb-2">

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import faceDoc from 'public/image/logo.svg';
 import userIcon from 'public/image/user-icon.svg';
-
 </script>
 
 <template>
@@ -14,10 +13,10 @@ import userIcon from 'public/image/user-icon.svg';
       </div>
 
       <div>
-        <nuxt-link to="/">
+        <nuxt-link to="/login">
           <button class="w-full btn-primary">
             <div class="flex justify-center items-center">
-              <span class="pr-1">Área do Usuário</span>
+              <span class="hidden pr-1 md:block">Área do Usuário</span>
             
               <img :src="userIcon" alt="seta para avançar" />
             </div>

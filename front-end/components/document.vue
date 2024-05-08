@@ -26,30 +26,13 @@ function clear() {
   page.value = 0
 }
 
-const validationText = computed(()=>{
-  if(route.name === 'residential') {
-    return titleResidential;
-  }
-
-  if(route.name === 'business') {
-    return titleBusiness;
-  }
-})
-
 const info = computed(()=>{
  return form[page.value]
 })
 
-const titleResidential = computed(()=>{
+const title = computed(()=>{
    if(page.value < 2) return "Quais são as informações do proprietário(a)?"
    if(page.value <= 3) return "Quais são as informações do inquilino(a)?" 
-   if(page.value === 4) return "Quais são as informações da propridade?" 
-   if(page.value === 5) return "Quais são as informações do contrato?" 
-})
-
-const titleBusiness = computed(()=>{
-   if(page.value < 2) return "business?"
-   if(page.value <= 3) return "ilino(a)?" 
    if(page.value === 4) return "Quais são as informações da propridade?" 
    if(page.value === 5) return "Quais são as informações do contrato?" 
 })
@@ -58,7 +41,7 @@ const titleBusiness = computed(()=>{
 <template>
   <div class="block lg:flex lg:justify-between">
     <Form
-      :title="validationText"
+      :title="title"
       :page="page"
       :info="info"
       @submit="submit"
