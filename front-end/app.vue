@@ -3,7 +3,7 @@
     <NuxtPwaManifest />
     <HeaderApp /> 
 
-    <div class="flex-1 lg:w-3/4 lg:mx-auto">
+    <div class="flex-1 lg:w-[1450px] lg:mx-auto">
       <NuxtPage />
     </div>
 

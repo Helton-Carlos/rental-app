@@ -13,7 +13,7 @@ export const useInfoPrint = defineStore('infoPrint', {
   }),
 
   actions: {
-    submitStorageUser(page: number, data: any) {
+    submitStorageUser(page: number, data: never[]) {
       if(page === 0) this.owners1 = data;
       if(page === 1) this.owners2 = data;
     
