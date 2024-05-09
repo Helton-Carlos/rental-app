@@ -15,12 +15,23 @@ export const useStore = defineStore('useStore', {
     },
 
     getUserStore() {
-      if(localStorage.getItem(STORAGE.RE_USER)) {
-        const local: any  = localStorage.getItem(STORAGE.RE_USER);
-        
-        return JSON.parse(local);
+      const userExistsInStorage = this.user && this.user.length > 0;
+      const reUserFromLocalStorage = localStorage.getItem(STORAGE.RE_USER);
+
+      if (userExistsInStorage || reUserFromLocalStorage) {
+        if (reUserFromLocalStorage) {
+            try {
+                const parsedUser = JSON.parse(reUserFromLocalStorage);
+                return parsedUser;
+            } catch (error) {
+                this.clearUserStorage();
+            }
+        } else {
+            return this.user;
+          }
       } else {
-      this.user = [];
+        
+          this.clearUserStorage();
       }
     },
 

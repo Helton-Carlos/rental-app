@@ -26,7 +26,7 @@ const section = [
   },
 ];
 
-const picked = ref<string>('')
+const picked = ref<string>('');
 
 function init() {
   if(picked.value) {

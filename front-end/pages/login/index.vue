@@ -14,7 +14,7 @@ const password = ref<string>('');
 const message = ref<IMessage>();
 
 async function submit (){
-  if(store.email === email.value && store.password === password.value) {
+  if(store?.email === email.value && store?.password === password.value) {
     message.value = {
       status: true,
       title: 'Login feito com sucesso!',

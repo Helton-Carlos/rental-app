@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <section class="bg-purple mx-auto my-2 px-1 py-5 lg:w-3/4 lg:my-12 lg:mx-auto">
+  <section class="bg-purple mx-auto mt-2 px-1 py-5 md:my-2 lg:w-3/4 lg:my-12 lg:mx-auto">
     <div class="text-center text-white lg:h-[400px] h-[300px] lg:pt-[80px] pt-[20px]">
       <h2 class="mb-2 text-center text-3xl font-bold">Planos</h2>
     </div>
@@ -10,7 +10,7 @@
     <div class="grid px-2 md:px-2 lg:grid-cols-3 xl:px-2" style="margin-top: -200px">
       <div class="p-0 py-12">
         <div
-          class="block h-full rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 lg:rounded-tr-none lg:rounded-br-none">
+          class="block h-full rounded-lg bg-white shadow-md dark:bg-neutral-700 lg:rounded-tr-none lg:rounded-br-none">
           <div class="border-b-2 border-neutral-100 border-opacity-100 p-6 text-center dark:border-opacity-10">
             <p class="mb-4 text-sm uppercase">
               <strong>Básico</strong>
