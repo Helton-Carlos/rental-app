@@ -22,6 +22,7 @@ const { info } = defineProps<{
         v-for="(card, index) in info" 
         :key="index"
       >
+      
         <img 
           class="bg-black w-[40px] h-[40px] p-1 rounded-sm"
           :src="card.icons" 

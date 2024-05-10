@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import arrowRight from '../public/image/arrow-right.svg'
-import arrowLeft from '../public/image/arrow-left.svg';
-
 interface IInfo {
   label: string,
   placeholder?: string,
@@ -74,7 +71,10 @@ function getInfos() {
           class="w-full btn-gray mt-3"
         >
           <div class="flex justify-center items-center">
-            <img :src="arrowLeft" alt="seta para voltar" />
+            <NuxtImg 
+              src="../public/image/arrow-left.svg"  
+              alt="seta para voltar"
+            />
             <span class="pl-1">Voltar</span>
           </div>
         </button> 
@@ -85,8 +85,11 @@ function getInfos() {
         >
           <div class="flex justify-center items-center">
             <span class="pr-1">Avançar</span>
-          
-            <img :src="arrowRight" alt="seta para avançar" />
+
+            <NuxtImg 
+              src="../public/image/arrow-right.svg"  
+              alt="seta para avançar"
+            />
           </div>
         </button>
       </div>

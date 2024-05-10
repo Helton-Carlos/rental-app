@@ -1,11 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-  modules: [
-    '@vueuse/nuxt',
-    '@pinia/nuxt',
-    '@vite-pwa/nuxt'
-  ],
+  modules: ['@vueuse/nuxt', '@pinia/nuxt', '@vite-pwa/nuxt', "@nuxt/image"],
   app: {
     head: {
       htmlAttrs: { dir: 'ltr', lang: 'pt' },

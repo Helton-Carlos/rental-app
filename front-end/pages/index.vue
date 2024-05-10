@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import contract from '../public/image/contract.png';
 import doc from '../public/image/icon-doc.svg';
 import print from '../public/image/icon-print.svg';
 import signature from '../public/image/icon-signature.svg';
@@ -94,7 +93,11 @@ function init() {
               <div class="flex justify-center items-center">
                 <span class="pr-1">Avançar</span>
               
-                <img :src="arrowRight" alt="seta para avançar" />
+                <NuxtImg 
+                  class="cursor-pointer"
+                  src="../public/image/arrow-right.svg"  
+                  alt="seta para avançar"  
+                />
               </div>
             </button>
           </form>
@@ -102,10 +105,10 @@ function init() {
       </div>
 
       <div>
-        <img 
+        <NuxtImg 
           class="hidden md:block"
-          :src="contract" 
-          alt="imagem de contrato" 
+          src="../public/image/contract.png"  
+          alt="imagem de contrato"  
         />
       </div>
     </div>

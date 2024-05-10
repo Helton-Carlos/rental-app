@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import userIcon from 'public/image/user-icon.svg';
 import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
 import type { IMessage } from '../../useful/interface';
 import { useStore } from '../../store/user';
 
-const { getUserStore } = useStore();
-const store =  getUserStore();
+const router = useRouter();
 
 const email = ref<string>('');
 const password = ref<string>('');
 const message = ref<IMessage>();
 
 async function submit (){
+  const { getUserStore } = useStore();
+  const store =  getUserStore();
+
   if(store?.email === email.value && store?.password === password.value) {
+    router.push({ name: 'dashboard'})
+
     message.value = {
       status: true,
       title: 'Login feito com sucesso!',
@@ -85,7 +88,7 @@ async function submit (){
       class="w-full btn-primary mt-3"
     >
       <div class="flex justify-center items-center">
-        <img :src="userIcon" alt="login" />
+        <NuxtImg src="../public/image/user-icon.svg" alt="login" />
         <span class="pl-1">Logar</span>
       </div>
     </button>

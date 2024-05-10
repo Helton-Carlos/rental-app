@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import faceDoc from 'public/image/logo.svg';
-import userIcon from 'public/image/user-icon.svg';
 </script>
 
 <template>
@@ -8,7 +6,11 @@ import userIcon from 'public/image/user-icon.svg';
     <div class="flex justify-between items-center mx-auto md:w-9/12">
       <div>
         <nuxt-link to="/">
-          <img class=" cursor-pointer" :src="faceDoc" alt="logo retalDoc" />
+          <NuxtImg 
+            class="cursor-pointer" 
+            src="../public/image/logo.svg" 
+            alt="logo retalDoc"
+          />
         </nuxt-link>
       </div>
 
@@ -17,8 +19,10 @@ import userIcon from 'public/image/user-icon.svg';
           <button class="w-full btn-primary">
             <div class="flex justify-center items-center">
               <span class="hidden pr-1 md:block">Área do Usuário</span>
-            
-              <img :src="userIcon" alt="seta para avançar" />
+              <NuxtImg 
+                src="../public/image/user-icon.svg" 
+                alt="seta para avançar"
+              />
             </div>
           </button> 
         </nuxt-link>

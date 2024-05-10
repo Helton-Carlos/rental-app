@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import userIcon from 'public/image/user-icon.svg';
-import arrowLeft from '../public/image/arrow-left.svg';
 import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
 import type { IMessage } from '../../useful/interface';
@@ -111,7 +109,7 @@ function back() {
         class="w-full btn-gray mt-3"
       >
         <div class="flex justify-center items-center">
-          <img :src="arrowLeft" alt="seta para voltar" />
+          <NuxtImg src="../public/image/arrow-left.svg" alt="seta para voltar" />
           <span class="pl-1">Voltar</span>
         </div>
       </button> 
@@ -121,7 +119,7 @@ function back() {
         class="w-full btn-primary mt-3"
       >
         <div class="flex justify-center items-center">
-          <img :src="userIcon" alt="login" />
+          <NuxtImg src="../public/image/user-icon.svg" alt="login" />
           <span class="pl-1">Salvar</span>
         </div>
       </button>

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const router = useRouter();
+
+function buy() {
+  router.push({ name: 'login'})
+}
 </script>
 
 <template>
@@ -60,6 +65,7 @@
             <button 
               type="button"
               class="btn-primary"
+              @click="buy"
             >
               Comprar
             </button>
@@ -110,6 +116,7 @@
             <button 
               type="button"
               class="btn-primary"
+              @click="buy"
             >
               Comprar
             </button>

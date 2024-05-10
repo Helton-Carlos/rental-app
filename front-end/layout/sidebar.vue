@@ -15,7 +15,11 @@ const path = ref([
   <div class="bg-white w-[350px] h-full">
     <div class="mx-auto flex justify-between py-4 md:w-9/12">
       <nuxt-link to="/">
-        <img class="cursor-pointer" :src="positive" alt="logo retalDoc" />
+        <NuxtImg 
+          class="cursor-pointer"
+          src="../public/image/positive.svg"  
+          alt="logo retalDoc"  
+        />
       </nuxt-link>
 
       <nav>
