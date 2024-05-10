@@ -5,7 +5,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
     <NuxtPwaManifest />
-    <HeaderApp /> 
+    <LazyHeaderApp /> 
 
     <div class="flex-1 lg:w-[1450px] lg:mx-auto">
       <div>
@@ -13,6 +13,6 @@
       </div>
     </div>
 
-    <FooterApp />
+    <LazyFooterApp />
   </div>
 </template>
