@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import positive from 'public/image/positive.svg';
+import Logo from 'public/image/logo.svg';
 
 const path = ref([
   { name: 'dashboard', path: 'dashboard', icon: positive },
@@ -15,9 +16,9 @@ const path = ref([
   <div class="bg-white w-[350px] h-full">
     <div class="mx-auto flex justify-between py-4 md:w-9/12">
       <nuxt-link to="/">
-        <NuxtImg 
+        <img 
           class="cursor-pointer"
-          src="../public/image/positive.svg"  
+          :src="Logo"  
           alt="logo retalDoc"  
         />
       </nuxt-link>

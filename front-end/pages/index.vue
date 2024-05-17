@@ -3,7 +3,8 @@ import { ref } from 'vue';
 import doc from '../public/image/icon-doc.svg';
 import print from '../public/image/icon-print.svg';
 import signature from '../public/image/icon-signature.svg';
-import arrowRight from '../public/image/arrow-right.svg'
+import arrowRight from '../public/image/arrow-right.svg';
+import Contract from '../public/image/contract.png';
 
 const router = useRouter();
 
@@ -93,9 +94,9 @@ function init() {
               <div class="flex justify-center items-center">
                 <span class="pr-1">Avançar</span>
               
-                <NuxtImg 
+                <img 
                   class="cursor-pointer"
-                  src="../public/image/arrow-right.svg"  
+                  :src="arrowRight"  
                   alt="seta para avançar"  
                 />
               </div>
@@ -105,9 +106,9 @@ function init() {
       </div>
 
       <div>
-        <NuxtImg 
+        <img 
           class="hidden md:block"
-          src="../public/image/contract.png"  
+          :src="Contract"  
           alt="imagem de contrato"  
         />
       </div>

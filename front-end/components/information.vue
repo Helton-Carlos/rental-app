@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import faceDoc from '../public/image/face-doc.svg';
+import girlHouse from '../public/image/girl-house.svg';
 </script>
 
 <template>
   <section class="my-5 px-5 py-5 md:mx-auto lg:w-4/5 md:my-12">
     <div class="flex items-center md:justify-between">
       <div>
-        <NuxtImg 
+        <img 
           class="hidden md:block"
-          src="../public/image/face-doc.svg" 
+          :src="faceDoc" 
           alt="imagem ilustrativa, tela de celular com homem." 
         />
       </div>
@@ -58,9 +60,9 @@
       </div>
 
       <div>
-        <NuxtImg 
+        <img 
           class="hidden md:block"
-          src="../public/image/girl-house.svg" 
+          :src="girlHouse" 
           alt="imagem ilustrativa, mulher em casa com plantas." 
         />
       </div>

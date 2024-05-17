@@ -4,6 +4,7 @@ import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
 import type { IMessage } from '../../useful/interface';
 import { useStore } from '../../store/user';
+import userIcon from '../public/image/user-icon.svg';
 
 const router = useRouter();
 
@@ -88,7 +89,7 @@ async function submit (){
       class="w-full btn-primary mt-3"
     >
       <div class="flex justify-center items-center">
-        <NuxtImg src="../public/image/user-icon.svg" alt="login" />
+        <img :src="userIcon" alt="login" />
         <span class="pl-1">Logar</span>
       </div>
     </button>

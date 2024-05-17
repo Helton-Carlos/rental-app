@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import userIcon from '../public/image/user-icon.svg';
+import Logo from '../public/image/logo.svg';
 </script>
 
 <template>
@@ -6,9 +8,9 @@
     <div class="flex justify-between items-center mx-auto md:w-9/12">
       <div>
         <nuxt-link to="/">
-          <NuxtImg 
+          <img 
             class="cursor-pointer" 
-            src="../public/image/logo.svg" 
+            :src="Logo" 
             alt="logo retalDoc"
           />
         </nuxt-link>
@@ -19,8 +21,8 @@
           <button class="w-full btn-primary">
             <div class="flex justify-center items-center">
               <span class="hidden pr-1 md:block">Área do Usuário</span>
-              <NuxtImg 
-                src="../public/image/user-icon.svg" 
+              <img 
+                :src="userIcon" 
                 alt="seta para avançar"
               />
             </div>

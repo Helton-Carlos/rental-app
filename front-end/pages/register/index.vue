@@ -4,6 +4,8 @@ import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
 import type { IMessage } from '../../useful/interface';
 import { useStore } from '../../store/user';
+import arrowLeft from '../public/image/arrow-left.svg';
+import userIcon from '../public/image/user-icon.svg'
 
 const router = useRouter();
 const { addUserStore } = useStore();
@@ -109,7 +111,7 @@ function back() {
         class="w-full btn-gray mt-3"
       >
         <div class="flex justify-center items-center">
-          <NuxtImg src="../public/image/arrow-left.svg" alt="seta para voltar" />
+          <img :src="arrowLeft" alt="seta para voltar" />
           <span class="pl-1">Voltar</span>
         </div>
       </button> 
@@ -119,7 +121,7 @@ function back() {
         class="w-full btn-primary mt-3"
       >
         <div class="flex justify-center items-center">
-          <NuxtImg src="../public/image/user-icon.svg" alt="login" />
+          <img :src="userIcon" alt="login" />
           <span class="pl-1">Salvar</span>
         </div>
       </button>

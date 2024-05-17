@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { useHtmlToPaper } from '../composables/useHtmlToPaper';
 import { useInfoPrint } from '../store/infoPrint';
 import { maskCPF, maskMoney } from '../useful/mask';
+import Print from '../public/image/print.svg'
 
 const { $state } = useInfoPrint();
 
@@ -320,7 +321,7 @@ function handlePrint() {
       <div class="flex justify-center items-center">
         <span class="pr-1">Imprimir</span>
       
-        <NuxtImg src="../public/image/print.svg" alt="imprimir" />
+        <img :src="Print" alt="imprimir" />
       </div>
     </button>
   </div>
