@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     strategies: 'generateSW',
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Retal App',
+      name: 'Retal-App',
       short_name: 'Rental-App Saas projeto de estudo com nuxt3. Vue3, Nuxt3, Typescript, Tailwind e bibliotecas adicionais.',
       theme_color: '#000000',
       icons: [

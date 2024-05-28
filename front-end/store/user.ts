@@ -30,8 +30,7 @@ export const useStore = defineStore('useStore', {
             return this.user;
           }
       } else {
-        
-          this.clearUserStorage();
+        this.clearUserStorage();
       }
     },
 
