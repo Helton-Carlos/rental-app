@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useHtmlToPaper } from '../composables/useHtmlToPaper';
 import { useInfoPrint } from '../store/infoPrint';
-import { maskCPF, maskMoney } from '../useful/mask';
+import { maskCPF, maskMoney } from '../utils/mask';
 import Print from '../public/image/print.svg';
 
 const { $state } = useInfoPrint();

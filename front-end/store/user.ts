@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
-import { STORAGE } from '../useful/enuns';
+import { STORAGE } from '../utils/enuns';
 
 export const useStore = defineStore('useStore', {
   state: () => ({

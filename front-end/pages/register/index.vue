@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
-import type { IMessage } from '../../useful/interface';
+import type { IMessage } from '../../utils/interface';
 import { useStore } from '../../store/user';
 import arrowLeft from '../public/image/arrow-left.svg';
 import userIcon from '../public/image/user-icon.svg'

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
-import { STORAGE } from '../useful/enuns';
+import { STORAGE } from '../utils/enuns';
 
 export const useInfoPrint = defineStore('infoPrint', {
   state: () => ({
@@ -26,7 +26,7 @@ export const useInfoPrint = defineStore('infoPrint', {
 
     clearStorage() {
       this.owners1 = [];
-      this.owners2 =  [];
+      this.owners2 = [];
     
       this.tenant1 = [];
       this.tenant2 = [];
