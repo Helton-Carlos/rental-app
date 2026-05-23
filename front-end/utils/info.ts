@@ -18,11 +18,11 @@ export const form = [
     },
     {
       label: 'Nacionalidade',
-      placeholder: 'Ex: Brasileiro',
-      model: '',
+      placeholder: 'Escolha',
       name: 'nationality',
-      type: 'text',
-      max: 30,
+      model: '',
+      select: true,
+      option: ['Brasileiro(a)', 'Estrangeiro(a)'],
     },
     {
       label: 'Estado Civil:',
@@ -134,11 +134,11 @@ export const form = [
     },
     {
       label: 'Nacionalidade',
-      placeholder: 'Ex: Brasileiro',
-      model: '',
+      placeholder: 'Escolha',
       name: 'nationality',
-      type: 'text',
-      max: 30,
+      model: '',
+      select: true,
+      option: ['Brasileiro(a)', 'Estrangeiro(a)'],
     },
     {
       label: 'Estado Civil:',

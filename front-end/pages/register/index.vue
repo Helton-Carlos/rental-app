@@ -48,56 +48,34 @@ async function submit() {
 
   isLoading.value = true;
 
-  try {
-    const response = await fetch('http://localhost:3000/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email.value,
-        password: password.value,
-      }),
-    });
+  const { post } = useApi();
+  const { data, error: apiError } = await post('/api/register', {
+    email: email.value,
+    password: password.value,
+  });
 
-    const data = await response.json();
+  if (data) {
+    message.value = {
+      status: true,
+      title: 'Conta criada! Com sucesso...',
+    };
 
-    if (response.ok) {
-      message.value = {
-        status: true,
-        title: 'Conta criada! Redirecionando para o login...',
-      };
-
-      setTimeout(() => {
-        router.push({ name: 'login' });
-      }, 1500);
-    } else {
-      message.value = {
-        status: false,
-        title: data.error || 'Erro ao criar conta. Tente novamente.',
-      };
-    }
-  } catch (err) {
+    router.push({ name: 'login' });
+  } else {
     message.value = {
       status: false,
-      title: 'Não foi possível conectar ao servidor.',
+      title: apiError || 'Erro ao criar conta. Tente novamente.',
     };
-  } finally {
-    isLoading.value = false;
-    setTimeout(() => {
-      message.value = undefined;
-    }, 5000);
   }
+
+  isLoading.value = false;
+  message.value = undefined;
 }
 </script>
 
 <template>
   <div class="min-h-screen flex items-center justify-center px-4 py-8">
     <div class="w-full max-w-[420px]">
-      <!-- Logo -->
-      <div class="flex justify-center mb-5">
-        <img :src="logo" alt="Retal" class="h-[36px]" />
-      </div>
-
-      <!-- Card -->
       <div
         class="bg-white rounded-lg shadow-lg px-5 py-6 border border-gray-light"
       >

@@ -1,11 +1,18 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-  modules: ['@vueuse/nuxt', '@pinia/nuxt', '@vite-pwa/nuxt', "@nuxt/image"],
+  modules: ['@vueuse/nuxt', '@pinia/nuxt', '@vite-pwa/nuxt', '@nuxt/image'],
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001',
+    },
+  },
   app: {
     head: {
       htmlAttrs: { dir: 'ltr', lang: 'pt' },
-      link: [{ rel: 'icon', type: 'image/png', href: "/icons/favicon-16x16.png" }],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/icons/favicon-16x16.png' },
+      ],
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
     },
@@ -15,7 +22,8 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     manifest: {
       name: 'Retal-App',
-      short_name: 'Rental-App Saas projeto de estudo com nuxt3. Vue3, Nuxt3, Typescript, Tailwind e bibliotecas adicionais.',
+      short_name:
+        'Rental-App Saas projeto de estudo com nuxt3. Vue3, Nuxt3, Typescript, Tailwind e bibliotecas adicionais.',
       theme_color: '#000000',
       icons: [
         {
@@ -61,4 +69,4 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-})
+});

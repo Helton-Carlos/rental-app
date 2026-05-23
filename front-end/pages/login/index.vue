@@ -2,14 +2,18 @@
 import { ref } from 'vue';
 import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
-import type { IMessage } from '../../utils/interface';
-import { useStore } from '../../store/user';
 import userIcon from '../public/image/user-icon.svg';
 
-const router = useRouter();
+interface IMessage {
+  status: boolean;
+  title: string;
+}
 
-const email = ref<string>('');
-const password = ref<string>('');
+const router = useRouter();
+const { post } = useApi();
+
+const email = ref('');
+const password = ref('');
 const message = ref<IMessage>();
 const showPassword = ref(false);
 const isLoading = ref(false);
@@ -28,12 +32,12 @@ async function submit() {
 
   isLoading.value = true;
 
-  const { getUserStore } = useStore();
-  const store = getUserStore();
-  l;
-  await new Promise((resolve) => setTimeout(resolve, 600));
+  const { data, error: apiError } = await post('/api/login', {
+    email: email.value,
+    password: password.value,
+  });
 
-  if (store?.email === email.value && store?.password === password.value) {
+  if (data) {
     message.value = {
       status: true,
       title: 'Login realizado! Redirecionando...',
@@ -48,12 +52,11 @@ async function submit() {
 
     message.value = {
       status: false,
-      title: 'E-mail ou senha incorretos. Tente novamente.',
+      title: apiError || 'E-mail ou senha incorretos.',
     };
   }
 
   isLoading.value = false;
-
   setTimeout(() => {
     message.value = undefined;
   }, 5000);
@@ -97,7 +100,6 @@ async function submit() {
             <input
               class="w-full bg-gray-light px-3 py-2 rounded-lg text-base outline-none border-2 border-transparent focus:border-purple focus:bg-white transition-colors"
               type="email"
-              name="email"
               id="email"
               placeholder="seu@email.com"
               v-model="email"
@@ -105,7 +107,6 @@ async function submit() {
             />
           </div>
 
-          <!-- Senha -->
           <div class="flex flex-col gap-1">
             <div class="flex justify-between items-center">
               <label class="text-sm font-medium" for="password">Senha</label>
@@ -120,7 +121,6 @@ async function submit() {
             <input
               class="w-full bg-gray-light px-3 py-2 rounded-lg text-base outline-none border-2 border-transparent focus:border-purple focus:bg-white transition-colors"
               :type="showPassword ? 'text' : 'password'"
-              name="password"
               id="password"
               placeholder="Digite sua senha"
               v-model="password"
