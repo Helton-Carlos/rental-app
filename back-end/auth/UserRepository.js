@@ -1,16 +1,19 @@
+const pool = require('../database/connection');
+
 class UserRepository {
-  constructor() {
-    this.users = []
+  async findByEmail(email) {
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [
+      email,
+    ]);
+    return result.rows[0] || null;
   }
 
-  findByEmail(email) {
-    this.users.find((user) => {
-      email === user.email
-    });
-  }
-
-  save() {
-    this.users.push(user);
+  async save(user) {
+    const result = await pool.query(
+      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id, email, created_at',
+      [user.email, user.password],
+    );
+    return result.rows[0];
   }
 }
 

@@ -1,5 +1,13 @@
 const fastify = require('fastify');
+const cors = require('@fastify/cors');
+const authRoutes = require('../auth/authRoutes');
 
 const app = fastify({ logger: true });
 
-module.exports = app
+app.register(cors, {
+  origin: true,
+});
+
+app.register(authRoutes);
+
+module.exports = app;

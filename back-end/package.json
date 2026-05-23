@@ -6,15 +6,19 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
+    "migrate": "node ./database/migrate.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
     "nodemon": "^3.1.2",
+    "pg": "^8.21.0",
     "uuid": "^9.0.1"
   }
 }

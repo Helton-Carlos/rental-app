@@ -1,16 +1,26 @@
-const User = require('./User')
+const bcrypt = require('bcrypt');
+const UserRepository = require('./UserRepository');
 
 class AuthService {
-  constructor(repository) {
-    this.repository = repository
+  constructor() {
+    this.repository = new UserRepository();
   }
 
-  register(name, email, password) {
-    const userExits = this.repository.findBy
-  }
+  async register(email, password) {
+    const userExists = await this.repository.findByEmail(email);
 
-  save() {
-    this.users.push(user);
+    if (userExists) {
+      throw new Error('E-mail já cadastrado.');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await this.repository.save({
+      email,
+      password: hashedPassword,
+    });
+
+    return user;
   }
 }
 
