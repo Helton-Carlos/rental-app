@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import UserRepository from './UserRepository.js';
+import { generateToken } from '../middleware/auth.js';
 
 class AuthService {
   private repository: UserRepository;
@@ -22,7 +23,9 @@ class AuthService {
       password: hashedPassword,
     });
 
-    return user;
+    const token = generateToken(user.id, user.role || 'basic');
+
+    return { user, token };
   }
 
   async login(email: string, password: string) {
@@ -38,7 +41,9 @@ class AuthService {
       throw new Error('E-mail ou senha incorretos.');
     }
 
-    return user;
+    const token = generateToken(user.id, user.role || 'basic');
+
+    return { user, token };
   }
 }
 
