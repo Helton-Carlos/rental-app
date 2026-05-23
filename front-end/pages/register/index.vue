@@ -4,11 +4,7 @@ import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
 import logo from '../public/image/logo.svg';
 import userIcon from '../public/image/user-icon.svg';
-
-interface IMessage {
-  status: boolean;
-  title: string;
-}
+import type { IMessage } from '../utils/interface';
 
 const router = useRouter();
 

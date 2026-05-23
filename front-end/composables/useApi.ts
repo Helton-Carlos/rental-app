@@ -1,4 +1,10 @@
-import type { ApiOptions, ApiResponse } from '@/utils/api';
+import type { IApiResponse } from '@/utils/interface';
+
+interface ApiOptions {
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+  body?: Record<string, unknown>;
+  headers?: Record<string, string>;
+}
 
 export function useApi() {
   const config = useRuntimeConfig();
@@ -7,7 +13,7 @@ export function useApi() {
   async function request<T = unknown>(
     endpoint: string,
     options: ApiOptions = {},
-  ): Promise<ApiResponse<T>> {
+  ): Promise<IApiResponse<T>> {
     const { method = 'GET', body, headers = {} } = options;
 
     try {

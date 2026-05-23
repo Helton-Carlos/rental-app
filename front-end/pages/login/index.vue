@@ -3,14 +3,11 @@ import { ref } from 'vue';
 import error from 'public/image/error.svg';
 import positive from 'public/image/positive.svg';
 import userIcon from '../public/image/user-icon.svg';
-
-interface IMessage {
-  status: boolean;
-  title: string;
-}
+import type { IMessage, IAuthResponse } from '../utils/interface';
 
 const router = useRouter();
 const { post } = useApi();
+const { setAuth } = useAuth();
 
 const email = ref('');
 const password = ref('');
@@ -35,12 +32,17 @@ async function submit() {
   });
 
   if (data) {
+    const response = data as IAuthResponse;
+    setAuth(response.user, response.token);
+
     message.value = {
       status: true,
       title: 'Login realizado! Redirecionando...',
     };
 
-    router.push({ name: 'dashboard' });
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 600);
   } else {
     email.value = '';
     password.value = '';
