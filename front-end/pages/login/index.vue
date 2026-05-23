@@ -11,92 +11,172 @@ const router = useRouter();
 const email = ref<string>('');
 const password = ref<string>('');
 const message = ref<IMessage>();
+const showPassword = ref(false);
+const isLoading = ref(false);
 
-async function submit (){
+async function submit() {
+  if (!email.value || !password.value) {
+    message.value = {
+      status: false,
+      title: 'Preencha todos os campos para continuar.',
+    };
+    setTimeout(() => {
+      message.value = undefined;
+    }, 4000);
+    return;
+  }
+
+  isLoading.value = true;
+
   const { getUserStore } = useStore();
-  const store =  getUserStore();
+  const store = getUserStore();
 
-  if(store?.email === email.value && store?.password === password.value) {
-    router.push({ name: 'dashboard'})
+  // Simula um pequeno delay para feedback visual
+  await new Promise((resolve) => setTimeout(resolve, 600));
 
+  if (store?.email === email.value && store?.password === password.value) {
     message.value = {
       status: true,
-      title: 'Login feito com sucesso!',
-    } 
+      title: 'Login realizado! Redirecionando...',
+    };
+
+    setTimeout(() => {
+      router.push({ name: 'dashboard' });
+    }, 800);
   } else {
     email.value = '';
     password.value = '';
-    
+
     message.value = {
       status: false,
-      title: 'Preencha as informações!',
-    }  
+      title: 'E-mail ou senha incorretos. Tente novamente.',
+    };
   }
 
+  isLoading.value = false;
+
   setTimeout(() => {
-    message.value = undefined
+    message.value = undefined;
   }, 5000);
 }
 </script>
 
 <template>
- <div>
-  <h2 class="text-2xl mt-10 mx-5 font-bold md:my-2 md:text-3xl">
-    Login
-  </h2>
-  
-  <form 
-    @submit.prevent="submit"
-    class="w-full h-full mx-auto bg-gray-light my-2 px-4 py-4 lg:max-w-[450px] lg:min-w-[340px] lg:text-left lg:my-8"
-  >
-    <h3 class="text-xl text-gray font-bold my-5 md:text-2xl"> 
-      Aproveite nossos serviços
-    </h3>
+  <div class="min-h-screen flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-[420px]">
+      <!-- Card -->
+      <div
+        class="bg-white rounded-lg shadow-lg px-5 py-6 border border-gray-light"
+      >
+        <div class="text-center mb-4">
+          <h1 class="text-2xl font-bold">Bem-vindo de volta</h1>
+          <p class="text-gray text-sm mt-1">
+            Entre na sua conta para acessar seus contratos.
+          </p>
+        </div>
 
-    <label class="font-medium" for="email">E-mail:</label>
-    <input
-      class="w-full bg-white mb-1 mt-1 py-2 px-2 border-gray rounded-sm focus:border-x-purple focus:ring-pborder-x-purple focus:outline-none focus:ring focus:ring-opacity-40" 
-      type="email" 
-      name="email" 
-      id="email"
-      placeholder="Ex: john@gmail.com"
-      v-model="email"
-    />
+        <!-- Mensagem de feedback -->
+        <div
+          v-if="message"
+          class="flex items-center gap-2 px-3 py-2 rounded-lg mb-3 transition-all"
+          :class="message.status ? 'bg-green/10' : 'bg-red-light'"
+        >
+          <img
+            :src="message.status ? positive : error"
+            :alt="message.title"
+            class="w-[18px] h-[18px]"
+          />
+          <span
+            class="text-sm font-medium"
+            :class="message.status ? 'text-green' : 'text-red'"
+          >
+            {{ message.title }}
+          </span>
+        </div>
 
-    <label class="font-medium" for="password">Senha:</label>
-    <input
-      class="w-full bg-white mb-1 mt-1 py-2 px-2 border-gray rounded-sm focus:border-x-purple focus:ring-pborder-x-purple focus:outline-none focus:ring focus:ring-opacity-40" 
-      type="password" 
-      name="password" 
-      id="password"
-      placeholder="*******"
-      v-model="password"
-    />
+        <form @submit.prevent="submit" class="flex flex-col gap-3">
+          <!-- E-mail -->
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium" for="email">E-mail</label>
+            <input
+              class="w-full bg-gray-light px-3 py-2 rounded-lg text-base outline-none border-2 border-transparent focus:border-purple focus:bg-white transition-colors"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="seu@email.com"
+              v-model="email"
+              autocomplete="email"
+            />
+          </div>
 
-    <div v-if="message" class="flex items-center justify-center py-2 gap-1 font-normal">
-      <img 
-        :src="message?.status ? positive : error" 
-        :alt="message?.title" 
-      />
+          <!-- Senha -->
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between items-center">
+              <label class="text-sm font-medium" for="password">Senha</label>
+              <button
+                type="button"
+                class="text-sm text-purple font-medium hover:underline"
+                @click="showPassword = !showPassword"
+              >
+                {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+              </button>
+            </div>
+            <input
+              class="w-full bg-gray-light px-3 py-2 rounded-lg text-base outline-none border-2 border-transparent focus:border-purple focus:bg-white transition-colors"
+              :type="showPassword ? 'text' : 'password'"
+              name="password"
+              id="password"
+              placeholder="Digite sua senha"
+              v-model="password"
+              autocomplete="current-password"
+            />
+          </div>
 
-      <span :class="message?.status ? 'text-green' : 'text-red'">
-        {{ message?.title }}
-      </span>
-    </div>
-    
-    <button 
-      type="submit"
-      class="w-full btn-primary mt-3"
-    >
-      <div class="flex justify-center items-center">
-        <img :src="userIcon" alt="login" />
-        <span class="pl-1">Logar</span>
+          <!-- Botão -->
+          <button
+            type="submit"
+            class="btn-primary mt-2 w-full py-3 flex justify-center items-center gap-2 disabled:opacity-60"
+            :disabled="isLoading"
+          >
+            <svg
+              v-if="isLoading"
+              class="animate-spin h-4 w-4 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              ></path>
+            </svg>
+            <img v-else :src="userIcon" alt="" class="w-[18px] h-[18px]" />
+            <span>{{ isLoading ? 'Entrando...' : 'Entrar' }}</span>
+          </button>
+        </form>
+
+        <!-- Link para registro -->
+        <div class="text-center mt-4 pt-3 border-t border-gray-light">
+          <p class="text-sm text-gray">
+            Não tem uma conta?
+            <nuxt-link
+              class="text-purple font-semibold hover:underline"
+              to="/register"
+            >
+              Criar conta
+            </nuxt-link>
+          </p>
+        </div>
       </div>
-    </button>
-
-    <nuxt-link class="flex text-purple justify-center mt-2 font-medium pb-2 hover:underline" to="/register">
-      Ainda não é cadastrado?
-    </nuxt-link> 
-  </form>
- </div>
+    </div>
+  </div>
 </template>
