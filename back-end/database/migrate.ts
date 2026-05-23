@@ -1,6 +1,6 @@
-const pool = require('./connection');
+import pool from './connection.js';
 
-async function migrate() {
+async function migrate(): Promise<void> {
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
@@ -14,7 +14,8 @@ async function migrate() {
     console.log('Migration executada com sucesso: tabela users criada.');
     process.exit(0);
   } catch (error) {
-    console.error('Erro ao executar migration:', error.message);
+    const err = error as Error;
+    console.error('Erro ao executar migration:', err.message);
     process.exit(1);
   }
 }

@@ -1,10 +1,10 @@
-const { Router } = require('express');
-const AuthService = require('./AuthService');
+import { Router, Request, Response } from 'express';
+import AuthService from './AuthService.js';
 
 const router = Router();
 const authService = new AuthService();
 
-router.post('/register', async (req, res) => {
+router.post('/register', async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -30,12 +30,14 @@ router.post('/register', async (req, res) => {
       },
     });
   } catch (error) {
-    if (error.message === 'E-mail já cadastrado.') {
-      return res.status(409).json({ error: error.message });
+    const err = error as Error;
+
+    if (err.message === 'E-mail já cadastrado.') {
+      return res.status(409).json({ error: err.message });
     }
 
     return res.status(500).json({ error: 'Erro interno do servidor.' });
   }
 });
 
-module.exports = router;
+export default router;

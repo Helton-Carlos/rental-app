@@ -25,3 +25,6 @@ Desktop.ini
 # Build / dist
 dist
 build
+*.js
+!*.config.js
+dist

@@ -1,12 +1,14 @@
-const bcrypt = require('bcrypt');
-const UserRepository = require('./UserRepository');
+import bcrypt from 'bcrypt';
+import UserRepository from './UserRepository.js';
 
 class AuthService {
+  private repository: UserRepository;
+
   constructor() {
     this.repository = new UserRepository();
   }
 
-  async register(email, password) {
+  async register(email: string, password: string) {
     const userExists = await this.repository.findByEmail(email);
 
     if (userExists) {
@@ -24,4 +26,4 @@ class AuthService {
   }
 }
 
-module.exports = AuthService;
+export default AuthService;
