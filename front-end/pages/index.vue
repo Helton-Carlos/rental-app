@@ -9,96 +9,100 @@ import Contract from '../public/image/contract.png';
 const router = useRouter();
 
 const section = [
-  {  
+  {
     icons: doc,
-    title: "Crie seu documento",
-    context: "Responda algumas perguntas para criar seu documento em minutos."
+    title: 'Preencha os dados',
+    context:
+      'Responda perguntas simples e seu contrato fica pronto em minutos.',
   },
-  {  
+  {
     icons: print,
-    title: "Salve e baixe",
-    context: "O seu documento será disponibilizado no formato PDF."
+    title: 'Baixe em PDF',
+    context:
+      'Seu documento formatado e pronto para uso, disponível para download imediato.',
   },
-  {  
+  {
     icons: signature,
-    title: "Imprima e assine",
-    context: "Você também pode optar por assinar digitalmente."
+    title: 'Assine e formalize',
+    context: 'Imprima para assinatura física ou utilize assinatura digital.',
   },
 ];
 
 const picked = ref<string>('');
+const showError = ref(false);
 
 function init() {
-  if(picked.value) {
-    router.push({ name: picked.value })
+  if (picked.value) {
+    showError.value = false;
+    router.push({ name: picked.value });
+  } else {
+    showError.value = true;
   }
 }
 </script>
 
 <template>
-  <div>  
-    <div class="mt-8 mx-4 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto">
+  <div>
+    <div
+      class="mt-8 mx-4 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto"
+    >
       <div class="w-[470px] mt-2 py-2 mx-auto text-center md:text-left md:mt-8">
-        <h2 class="text-2xl font-bold md:my-2 md:text-3xl">
-          Contrato de Locação Residencial e Comercial
-          Selecione o modelo:
-        </h2>
-        
-        <div class="flex flex-col gap-1 mt-2">
-          <span class="text-gray">
-            Selecione o modelo:
+        <h1 class="text-2xl font-bold md:my-2 md:text-3xl leading-tight">
+          Seu contrato de locação pronto em minutos
+        </h1>
+
+        <p class="text-gray mt-2 text-base">
+          Gere contratos residenciais ou comerciais com cláusulas atualizadas e
+          prontos para assinar.
+        </p>
+
+        <div class="flex flex-col gap-1 mt-4">
+          <span class="text-sm text-gray font-medium">
+            Qual tipo de contrato você precisa?
           </span>
 
-          <form 
-            @submit.prevent="init" 
-            class="flex flex-col gap-2"
-          >
-            <div class="bg-gray-light px-2 py-3 flex items-center rounded-lg">
-              <input 
-                class="w-4 h-4" 
-                type="radio" 
-                name="residential" 
+          <form @submit.prevent="init" class="flex flex-col gap-2">
+            <label
+              for="residential"
+              class="bg-gray-light px-3 py-3 flex items-center rounded-lg cursor-pointer hover:bg-gray-200 transition-colors"
+              :class="{ 'ring-2 ring-purple': picked === 'residential' }"
+            >
+              <input
+                class="w-4 h-4 accent-purple"
+                type="radio"
+                name="contract-type"
                 id="residential"
                 value="residential"
                 v-model="picked"
-              > 
-              <label 
-                for="residential" 
-                class="pl-1 font-semibold"
-              >
-                Locação Residencial
-              </label>
-            </div>
+              />
+              <span class="pl-2 font-semibold">Locação Residencial</span>
+            </label>
 
-            <div class="bg-gray-light px-3 py-3 flex items-center rounded-lg">
-              <input 
-                class="w-4 h-4" 
-                type="radio" 
-                name="business" 
+            <label
+              for="business"
+              class="bg-gray-light px-3 py-3 flex items-center rounded-lg cursor-pointer hover:bg-gray-200 transition-colors"
+              :class="{ 'ring-2 ring-purple': picked === 'business' }"
+            >
+              <input
+                class="w-4 h-4 accent-purple"
+                type="radio"
+                name="contract-type"
                 id="business"
                 value="business"
                 v-model="picked"
-              > 
-              <label 
-                for="business" 
-                class="pl-1 font-semibold"
-              >
-                Locação Comercial
-              </label>
-            </div>
+              />
+              <span class="pl-2 font-semibold">Locação Comercial</span>
+            </label>
 
-            <button 
-              class="btn-primary mt-3"
-              type="submit"
-            >
+            <p v-if="showError" class="text-red-500 text-sm mt-1">
+              Selecione um tipo de contrato para continuar.
+            </p>
+
+            <button class="btn-primary mt-3" type="submit">
               <div class="flex justify-center items-center">
-                <span class="pr-1">Avançar</span>
-              
-                <img 
-                  class="cursor-pointer"
-                  :src="arrowRight"  
-                  alt="seta para avançar"  
-                />
+                <span class="pr-1">Criar meu contrato</span>
+
+                <img class="cursor-pointer" :src="arrowRight" alt="Avançar" />
               </div>
             </button>
           </form>
@@ -106,17 +110,15 @@ function init() {
       </div>
 
       <div>
-        <img 
+        <img
           class="hidden md:block"
-          :src="Contract"  
-          alt="imagem de contrato"  
+          :src="Contract"
+          alt="Ilustração de um contrato de locação"
         />
       </div>
     </div>
- 
-    <section-card
-      :info="section"
-    />
+
+    <section-card :info="section" />
 
     <information />
 
