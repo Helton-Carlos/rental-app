@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from '../public/image/logo.svg';
+import userIcon from '../public/image/user-icon.svg';
 
 const { user, logout, isPremium } = useAuth();
 const router = useRouter();
@@ -10,6 +11,14 @@ const menuOpen = ref(false);
 const navigation = computed(() => {
   const items = [
     { name: 'Dashboard', path: '/dashboard', icon: '📊' },
+    { name: 'Meus contratos', path: '/dashboard/contracts', icon: '📄' },
+  ];
+
+  return items;
+});
+
+const contractTypes = computed(() => {
+  const items = [
     {
       name: 'Residencial',
       path: '/dashboard/contracts/residential',
@@ -76,77 +85,182 @@ function isActive(path: string) {
       </div>
     </header>
 
-    <!-- Container principal -->
-    <div
-      class="flex-1 mx-auto w-full md:w-9/12 flex flex-col lg:flex-row py-6 px-4 md:px-0 gap-6"
-    >
-      <!-- Sidebar -->
-      <aside class="w-full lg:w-[220px] flex-shrink-0">
-        <div class="lg:sticky lg:top-6">
-          <!-- Toggle mobile -->
-          <button
-            class="lg:hidden flex items-center gap-2 text-base font-semibold mb-3"
-            @click="menuOpen = !menuOpen"
+    <!-- Body -->
+    <div class="flex-1 flex">
+      <!-- Sidebar fixa -->
+      <aside
+        class="hidden lg:flex flex-col w-[240px] bg-white border-r border-gray-light p-4"
+      >
+        <nav class="flex flex-col flex-1">
+          <!-- Menu principal -->
+          <p
+            class="text-sm text-gray font-semibold uppercase tracking-wide mb-2 px-3"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
             Menu
+          </p>
+          <ul class="space-y-1">
+            <li v-for="item in navigation" :key="item.path">
+              <nuxt-link
+                :to="item.path"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium transition-colors"
+                :class="
+                  isActive(item.path)
+                    ? 'bg-purple text-white'
+                    : 'hover:bg-gray-light'
+                "
+              >
+                <span>{{ item.icon }}</span>
+                <span>{{ item.name }}</span>
+              </nuxt-link>
+            </li>
+          </ul>
+
+          <!-- Tipos de contrato -->
+          <p
+            class="text-sm text-gray font-semibold uppercase tracking-wide mt-6 mb-2 px-3"
+          >
+            Contratos
+          </p>
+          <ul class="space-y-1">
+            <li v-for="item in contractTypes" :key="item.path">
+              <nuxt-link
+                :to="item.path"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                :class="
+                  isActive(item.path)
+                    ? 'bg-purple text-white'
+                    : 'hover:bg-gray-light'
+                "
+              >
+                <span>{{ item.icon }}</span>
+                <span>{{ item.name }}</span>
+              </nuxt-link>
+            </li>
+          </ul>
+
+          <!-- Novo contrato -->
+          <nuxt-link
+            to="/dashboard/contracts/new"
+            class="flex items-center gap-2 px-3 py-2 mt-4 rounded-lg text-base font-semibold bg-purple text-white hover:bg-black transition-colors"
+          >
+            <span>＋</span>
+            <span>Novo contrato</span>
+          </nuxt-link>
+
+          <!-- Spacer -->
+          <div class="flex-1"></div>
+
+          <!-- Sair -->
+          <button
+            @click="handleLogout"
+            class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium text-red hover:bg-red-light transition-colors mt-4"
+          >
+            <span>🚪</span>
+            <span>Sair</span>
           </button>
-
-          <nav :class="{ hidden: !menuOpen, 'lg:block': true }">
-            <ul class="space-y-1">
-              <li v-for="item in navigation" :key="item.path">
-                <nuxt-link
-                  :to="item.path"
-                  class="flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium transition-colors"
-                  :class="
-                    isActive(item.path)
-                      ? 'bg-purple text-white'
-                      : 'hover:bg-gray-light'
-                  "
-                >
-                  <span>{{ item.icon }}</span>
-                  <span>{{ item.name }}</span>
-                </nuxt-link>
-              </li>
-            </ul>
-
-            <hr class="my-4 border-gray-light" />
-
-            <nuxt-link
-              to="/dashboard/contracts/new"
-              class="flex items-center gap-2 px-3 py-2 rounded-lg text-base font-semibold text-purple hover:bg-purple-light transition-colors"
-            >
-              <span>＋</span>
-              <span>Novo contrato</span>
-            </nuxt-link>
-
-            <button
-              @click="handleLogout"
-              class="w-full mt-2 flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium text-red hover:bg-red-light transition-colors"
-            >
-              <span>🚪</span>
-              <span>Sair</span>
-            </button>
-          </nav>
-        </div>
+        </nav>
       </aside>
 
-      <!-- Conteúdo -->
-      <main class="flex-1 min-w-0">
-        <slot />
+      <!-- Mobile menu toggle -->
+      <div class="lg:hidden fixed bottom-4 right-4 z-50">
+        <button
+          @click="menuOpen = !menuOpen"
+          class="bg-purple text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile sidebar overlay -->
+      <div v-if="menuOpen" class="lg:hidden fixed inset-0 z-40 flex">
+        <div
+          class="absolute inset-0 bg-black/40"
+          @click="menuOpen = false"
+        ></div>
+        <div class="relative w-[260px] bg-white h-full p-4 overflow-y-auto">
+          <p
+            class="text-sm text-gray font-semibold uppercase tracking-wide mb-2 px-3"
+          >
+            Menu
+          </p>
+          <ul class="space-y-1">
+            <li v-for="item in navigation" :key="item.path">
+              <nuxt-link
+                :to="item.path"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium transition-colors"
+                :class="
+                  isActive(item.path)
+                    ? 'bg-purple text-white'
+                    : 'hover:bg-gray-light'
+                "
+                @click="menuOpen = false"
+              >
+                <span>{{ item.icon }}</span>
+                <span>{{ item.name }}</span>
+              </nuxt-link>
+            </li>
+          </ul>
+
+          <p
+            class="text-sm text-gray font-semibold uppercase tracking-wide mt-6 mb-2 px-3"
+          >
+            Contratos
+          </p>
+          <ul class="space-y-1">
+            <li v-for="item in contractTypes" :key="item.path">
+              <nuxt-link
+                :to="item.path"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                :class="
+                  isActive(item.path)
+                    ? 'bg-purple text-white'
+                    : 'hover:bg-gray-light'
+                "
+                @click="menuOpen = false"
+              >
+                <span>{{ item.icon }}</span>
+                <span>{{ item.name }}</span>
+              </nuxt-link>
+            </li>
+          </ul>
+
+          <nuxt-link
+            to="/dashboard/contracts/new"
+            class="flex items-center gap-2 px-3 py-2 mt-4 rounded-lg text-base font-semibold bg-purple text-white"
+            @click="menuOpen = false"
+          >
+            <span>＋</span>
+            <span>Novo contrato</span>
+          </nuxt-link>
+
+          <button
+            @click="handleLogout"
+            class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-base font-medium text-red hover:bg-red-light transition-colors mt-6"
+          >
+            <span>🚪</span>
+            <span>Sair</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Conteúdo principal -->
+      <main class="flex-1 p-6 lg:p-8 mt-8 overflow-auto">
+        <div class="max-w-[900px] mx-auto">
+          <slot />
+        </div>
       </main>
     </div>
   </div>
