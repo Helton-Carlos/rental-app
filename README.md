@@ -1,5 +1,5 @@
 # Nuxt 3 + TypeScript + Vitest + Tailwind (Front-End)
-# Node Js + Fastify + Biblioteca adicionais (Back-End)
+# Node Js + Express + TypeScript + Biblioteca adicionais (Back-End)
 
 **💬 About.** 
 
