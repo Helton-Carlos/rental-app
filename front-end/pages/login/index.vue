@@ -24,9 +24,6 @@ async function submit() {
       status: false,
       title: 'Preencha todos os campos para continuar.',
     };
-    setTimeout(() => {
-      message.value = undefined;
-    }, 4000);
     return;
   }
 
@@ -43,9 +40,7 @@ async function submit() {
       title: 'Login realizado! Redirecionando...',
     };
 
-    setTimeout(() => {
-      router.push({ name: 'dashboard' });
-    }, 800);
+    router.push({ name: 'dashboard' });
   } else {
     email.value = '';
     password.value = '';
@@ -57,9 +52,6 @@ async function submit() {
   }
 
   isLoading.value = false;
-  setTimeout(() => {
-    message.value = undefined;
-  }, 5000);
 }
 </script>
 
