@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen overflow-x-hidden">
     <NuxtPwaManifest />
     <NuxtLoadingIndicator />
-    <HeaderApp /> 
+    <HeaderApp />
 
-    <div class="flex-1 lg:w-[1450px] lg:mx-auto">
+    <div class="flex-1 w-full max-w-[1450px] mx-auto overflow-x-hidden">
       <div>
         <NuxtPage />
       </div>

@@ -44,9 +44,11 @@ function init() {
 <template>
   <div>
     <div
-      class="mt-8 mx-4 flex justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto"
+      class="mt-8 mx-4 flex flex-col md:flex-row justify-between items-center lg:w-3/4 lg:my-12 lg:mx-auto gap-4"
     >
-      <div class="w-[470px] mt-2 py-2 mx-auto text-center md:text-left md:mt-8">
+      <div
+        class="w-full md:max-w-[470px] mt-2 py-2 mx-auto text-center md:text-left md:mt-8"
+      >
         <h1 class="text-2xl font-bold md:my-2 md:text-3xl leading-tight">
           Seu contrato de locação pronto em minutos
         </h1>
@@ -94,7 +96,7 @@ function init() {
               <span class="pl-2 font-semibold">Locação Comercial</span>
             </label>
 
-            <p v-if="showError" class="text-red-500 text-sm mt-1">
+            <p v-if="showError" class="text-red text-sm mt-1">
               Selecione um tipo de contrato para continuar.
             </p>
 
@@ -109,9 +111,9 @@ function init() {
         </div>
       </div>
 
-      <div>
+      <div class="hidden md:block flex-shrink-0 max-w-[350px]">
         <img
-          class="hidden md:block"
+          class="w-full h-auto"
           :src="Contract"
           alt="Ilustração de um contrato de locação"
         />

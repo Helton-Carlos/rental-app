@@ -28,16 +28,7 @@ export default {
       '3xl': '2.000rem',
       '4xl': '3.775rem',
     },
-    extend: {
-      spacing: {
-        1: '8px',
-        2: '12px',
-        3: '18px',
-        4: '25px',
-        5: '32px',
-        6: '48px',
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
