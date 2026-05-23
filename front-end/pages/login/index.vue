@@ -30,8 +30,7 @@ async function submit() {
 
   const { getUserStore } = useStore();
   const store = getUserStore();
-
-  // Simula um pequeno delay para feedback visual
+  l;
   await new Promise((resolve) => setTimeout(resolve, 600));
 
   if (store?.email === email.value && store?.password === password.value) {
@@ -64,7 +63,6 @@ async function submit() {
 <template>
   <div class="min-h-screen flex items-center justify-center px-4 py-8">
     <div class="w-full max-w-[420px]">
-      <!-- Card -->
       <div
         class="bg-white rounded-lg shadow-lg px-5 py-6 border border-gray-light"
       >
@@ -75,7 +73,6 @@ async function submit() {
           </p>
         </div>
 
-        <!-- Mensagem de feedback -->
         <div
           v-if="message"
           class="flex items-center gap-2 px-3 py-2 rounded-lg mb-3 transition-all"
@@ -95,7 +92,6 @@ async function submit() {
         </div>
 
         <form @submit.prevent="submit" class="flex flex-col gap-3">
-          <!-- E-mail -->
           <div class="flex flex-col gap-1">
             <label class="text-sm font-medium" for="email">E-mail</label>
             <input
@@ -132,7 +128,6 @@ async function submit() {
             />
           </div>
 
-          <!-- Botão -->
           <button
             type="submit"
             class="btn-primary mt-2 w-full py-3 flex justify-center items-center gap-2 disabled:opacity-60"
@@ -164,7 +159,6 @@ async function submit() {
           </button>
         </form>
 
-        <!-- Link para registro -->
         <div class="text-center mt-4 pt-3 border-t border-gray-light">
           <p class="text-sm text-gray">
             Não tem uma conta?
