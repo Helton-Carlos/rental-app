@@ -40,4 +40,30 @@ router.post('/register', async (req: Request, res: Response) => {
   }
 });
 
+router.post('/login', async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      error: 'E-mail e senha são obrigatórios.',
+    });
+  }
+
+  try {
+    const user = await authService.login(email, password);
+
+    return res.status(200).json({
+      message: 'Login realizado com sucesso.',
+      user: {
+        id: user.id,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    const err = error as Error;
+
+    return res.status(401).json({ error: err.message });
+  }
+});
+
 export default router;

@@ -24,6 +24,22 @@ class AuthService {
 
     return user;
   }
+
+  async login(email: string, password: string) {
+    const user = await this.repository.findByEmail(email);
+
+    if (!user) {
+      throw new Error('E-mail ou senha incorretos.');
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      throw new Error('E-mail ou senha incorretos.');
+    }
+
+    return user;
+  }
 }
 
 export default AuthService;
